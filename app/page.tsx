@@ -1,3 +1,9 @@
+import Showcase from './components/Showcase'
+
 export default function Home() {
-  return <main>HOME</main>
+  return (
+    <main>
+      <Showcase />
+    </main>
+  )
 }
