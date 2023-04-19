@@ -1,6 +1,8 @@
 import './globals.css'
 import React from 'react'
+import classNames from 'classnames'
 import Providers from './providers'
+import Navbar from './components/Navbar'
 
 export const metadata = {
   title: 'FakeStore',
@@ -12,10 +14,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const bodyClass = classNames('bg-background', 'text-foreground')
   return (
     <html lang="en">
-      <body>
-        <Providers>{children}</Providers>
+      <body className={bodyClass}>
+        <Providers>
+          <Navbar />
+          {children}
+        </Providers>
       </body>
     </html>
   )
