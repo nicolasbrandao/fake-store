@@ -4,7 +4,7 @@ import React, { Dispatch, createContext, useReducer } from 'react'
 import { ProductType } from '@/types'
 
 export const actionTypes = {
-  fetchAll: 'fetchAll',
+  fetchAllProducts: 'fetchAllProducts',
 }
 
 type StateType = {
@@ -13,7 +13,7 @@ type StateType = {
 
 type ActionType = {
   type: string
-  payload: any // verify this later!!!
+  payload: any
 }
 
 const initialState: StateType = {
@@ -22,8 +22,11 @@ const initialState: StateType = {
 
 const reducer = (state: StateType, action: ActionType) => {
   switch (action.type) {
-    case actionTypes.fetchAll:
-      return { ...state, ...action.payload }
+    case actionTypes.fetchAllProducts:
+      return {
+        ...state,
+        productsList: action.payload,
+      }
     default:
       return state
   }
