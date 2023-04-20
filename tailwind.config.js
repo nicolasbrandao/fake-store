@@ -6,9 +6,20 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    colors: {
-      background: 'rgb(var(--background) / <alpha-value>)',
-      foreground: 'rgb(var(--foreground) / <alpha-value>)'
+    extend: {
+      colors: {
+        background: 'rgb(var(--background) / <alpha-value>)',
+        foreground: 'rgb(var(--foreground) / <alpha-value>)',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+      },
+      animation: {
+        carousel: 'marquee 60s linear infinite',
+      },
     },
   },
   plugins: [],

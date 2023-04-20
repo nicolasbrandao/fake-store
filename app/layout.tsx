@@ -1,8 +1,14 @@
 import './globals.css'
 import React from 'react'
 import classNames from 'classnames'
+import { Montserrat } from 'next/font/google'
 import Providers from './providers'
 import Navbar from './components/Navbar'
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export const metadata = {
   title: 'FakeStore',
@@ -14,7 +20,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const bodyClass = classNames('bg-background', 'text-foreground')
+  const bodyClass = classNames(
+    'bg-background',
+    'text-foreground',
+    'overflow-x-hidden',
+    montserrat.className
+  )
   return (
     <html lang="en">
       <body className={bodyClass}>

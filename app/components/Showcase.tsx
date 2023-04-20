@@ -1,26 +1,23 @@
 'use client'
 
-import { useState, useEffect, useContext } from 'react'
+import { useEffect, useContext } from 'react'
 import { ProductType } from '@/types'
 import classNames from 'classnames'
-import fetchAllProducts from '../lib/fetchAllProducts'
+import fetchProducts from '../lib/fetchProducts'
 import { actionTypes, StoreContext } from '../context/store'
 import ProductCard from './ProductCard'
 
 export default function Showcase() {
   const { state, dispatch } = useContext(StoreContext)
-  const [productsList, setProductsList] = useState<ProductType[]>([])
 
   useEffect(() => {
-    fetchAllProducts({ limit: 3 }).then((data) => setProductsList(data))
-  }, [])
-
-  useEffect(() => {
-    dispatch({
-      type: actionTypes.fetchAllProducts,
-      payload: productsList,
+    fetchProducts({ limit: 3 }).then((data) => {
+      dispatch({
+        type: actionTypes.fetchAllProducts,
+        payload: data,
+      })
     })
-  }, [dispatch, productsList])
+  }, [dispatch])
 
   const productsContainerClass = classNames(
     'lg:grid',

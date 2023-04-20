@@ -52,7 +52,7 @@ export default function ProductCard({ product }: PropsType) {
   const imageClass = classNames('flex', 'h-full', 'object-contain')
 
   return (
-    <a href="#" className={productContainerClass}>
+    <div className={productContainerClass}>
       <div className={infoContainerClass}>
         <h3>
           <span className={titleClass}>{title}</span>
@@ -68,6 +68,6 @@ export default function ProductCard({ product }: PropsType) {
           className={imageClass}
         />
       </div>
-    </a>
+    </div>
   )
 }
