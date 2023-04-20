@@ -10,7 +10,8 @@ export default function Navbar() {
     'p-6',
     'sticky',
     'top-0',
-    'z-10'
+    'z-10',
+    'bg-background'
   )
   const navListClass = classNames('flex', 'gap-4', 'items-center')
   const mainLinksContainerClass = classNames('flex', 'gap-4')
