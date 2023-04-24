@@ -5,11 +5,13 @@ import { ProductType } from '@/types'
 
 export const actionTypes = {
   fetchAllProducts: 'fetchAllProducts',
+  fetchCategories: 'fetchCategories',
   fetchGithubStats: 'fetchGithubStats',
 }
 
 type StateType = {
   productsList: ProductType[]
+  categories: string[]
   githubStats: {
     stars: number
     forks: number
@@ -23,6 +25,7 @@ type ActionType = {
 
 const initialState: StateType = {
   productsList: [],
+  categories: [],
   githubStats: {
     stars: 0,
     forks: 0,
@@ -35,6 +38,11 @@ const reducer = (state: StateType, action: ActionType) => {
       return {
         ...state,
         productsList: action.payload,
+      }
+    case actionTypes.fetchCategories:
+      return {
+        ...state,
+        categories: action.payload,
       }
     case actionTypes.fetchGithubStats:
       return {
