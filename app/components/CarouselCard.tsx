@@ -2,13 +2,14 @@ import { ProductType } from '@/types'
 import React from 'react'
 import Image from 'next/image'
 import classNames from 'classnames'
+import Link from 'next/link'
 
 type PropsType = {
   product: ProductType
 }
 
 export default function CarouselCard({ product }: PropsType) {
-  const { title } = product
+  const { title, id } = product
 
   const cardContainerClass = classNames(
     'relative',
@@ -41,7 +42,7 @@ export default function CarouselCard({ product }: PropsType) {
   const imageClass = classNames('h-full', 'object-contain')
 
   return (
-    <div className={cardContainerClass}>
+    <Link href={`/${id}`} className={cardContainerClass}>
       <div className={imageContainerClass}>
         <Image
           className={imageClass}
@@ -54,6 +55,6 @@ export default function CarouselCard({ product }: PropsType) {
       <div className={titleContainerClass}>
         <div className={titleClass}>{title}</div>
       </div>
-    </div>
+    </Link>
   )
 }

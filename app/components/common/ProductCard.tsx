@@ -2,6 +2,7 @@ import { ProductType } from '@/types'
 import classNames from 'classnames'
 import Image from 'next/image'
 import React from 'react'
+import Link from 'next/link'
 
 type PropsType = {
   product: ProductType
@@ -13,7 +14,7 @@ const formatter = new Intl.NumberFormat('en-US', {
 })
 
 export default function ProductCard({ product }: PropsType) {
-  const { title, price, image } = product
+  const { title, price, image, id } = product
 
   const productContainerClass = classNames(
     'lg:first:col-span-2',
@@ -58,7 +59,7 @@ export default function ProductCard({ product }: PropsType) {
       : title
 
   return (
-    <div className={productContainerClass}>
+    <Link href={`/${id}`} className={productContainerClass}>
       <div className={infoContainerClass}>
         <h3>
           <span className={titleClass}>{truncatedTitle}</span>
@@ -74,6 +75,6 @@ export default function ProductCard({ product }: PropsType) {
           className={imageClass}
         />
       </div>
-    </div>
+    </Link>
   )
 }
