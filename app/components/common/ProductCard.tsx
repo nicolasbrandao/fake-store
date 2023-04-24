@@ -51,11 +51,17 @@ export default function ProductCard({ product }: PropsType) {
 
   const imageClass = classNames('flex', 'h-full', 'object-contain')
 
+  const MAX_TITLE_LENGTH = 15
+  const truncatedTitle =
+    title.length > MAX_TITLE_LENGTH
+      ? `${title.substring(0, MAX_TITLE_LENGTH)}...`
+      : title
+
   return (
     <div className={productContainerClass}>
       <div className={infoContainerClass}>
         <h3>
-          <span className={titleClass}>{title}</span>
+          <span className={titleClass}>{truncatedTitle}</span>
         </h3>
         <div className={priceClass}>{formatter.format(price)}</div>
       </div>
