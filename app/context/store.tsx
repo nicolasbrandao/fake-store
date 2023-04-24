@@ -5,10 +5,15 @@ import { ProductType } from '@/types'
 
 export const actionTypes = {
   fetchAllProducts: 'fetchAllProducts',
+  fetchGithubStats: 'fetchGithubStats',
 }
 
 type StateType = {
   productsList: ProductType[]
+  githubStats: {
+    stars: number
+    forks: number
+  }
 }
 
 type ActionType = {
@@ -18,6 +23,10 @@ type ActionType = {
 
 const initialState: StateType = {
   productsList: [],
+  githubStats: {
+    stars: 0,
+    forks: 0,
+  },
 }
 
 const reducer = (state: StateType, action: ActionType) => {
@@ -26,6 +35,14 @@ const reducer = (state: StateType, action: ActionType) => {
       return {
         ...state,
         productsList: action.payload,
+      }
+    case actionTypes.fetchGithubStats:
+      return {
+        ...state,
+        githubStats: {
+          stars: action.payload.stargazers_count,
+          forks: action.payload.forks_count,
+        },
       }
     default:
       return state
