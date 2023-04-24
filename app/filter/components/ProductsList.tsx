@@ -3,9 +3,9 @@
 import { useEffect, useContext } from 'react'
 import { ProductType } from '@/types'
 import classNames from 'classnames'
-import fetchProducts from '../lib/fetchProducts'
-import { actionTypes, StoreContext } from '../context/store'
-import ProductCard from './common/ProductCard'
+import fetchProducts from '../../lib/fetchProducts'
+import { actionTypes, StoreContext } from '../../context/store'
+import ProductCard from '../../components/common/ProductCard'
 
 export default function Showcase() {
   const { state, dispatch } = useContext(StoreContext)

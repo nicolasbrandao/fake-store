@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useEffect, useContext } from 'react'
-import { actionTypes, StoreContext } from '../context/store'
-import fetchCategories from '../lib/fetchCategories'
+import { actionTypes, StoreContext } from '../../context/store'
+import fetchCategories from '../../lib/fetchCategories'
 
 export default function Sidebar() {
   const { state, dispatch } = useContext(StoreContext)

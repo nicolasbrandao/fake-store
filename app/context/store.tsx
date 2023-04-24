@@ -5,12 +5,14 @@ import { ProductType } from '@/types'
 
 export const actionTypes = {
   fetchAllProducts: 'fetchAllProducts',
+  fetchSingleProduct: 'fetchSingleProduct',
   fetchCategories: 'fetchCategories',
   fetchGithubStats: 'fetchGithubStats',
 }
 
 type StateType = {
   productsList: ProductType[]
+  singleProduct: ProductType
   categories: string[]
   githubStats: {
     stars: number
@@ -25,6 +27,18 @@ type ActionType = {
 
 const initialState: StateType = {
   productsList: [],
+  singleProduct: {
+    id: 0,
+    title: '',
+    price: 0,
+    description: '',
+    category: '',
+    image: '',
+    rating: {
+      rate: 0,
+      count: 0,
+    },
+  },
   categories: [],
   githubStats: {
     stars: 0,
@@ -51,6 +65,11 @@ const reducer = (state: StateType, action: ActionType) => {
           stars: action.payload.stargazers_count,
           forks: action.payload.forks_count,
         },
+      }
+    case actionTypes.fetchSingleProduct:
+      return {
+        ...state,
+        singleProduct: action.payload,
       }
     default:
       return state
