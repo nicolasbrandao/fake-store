@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import Link from 'next/link'
 import { BsTriangle } from 'react-icons/bs'
 
 export default function Brand() {
@@ -6,9 +7,9 @@ export default function Brand() {
   const logoClass = classNames('border', 'rounded-full', 'h-10', 'w-10', 'p-1')
   const titleClass = classNames('font-bold')
   return (
-    <div className={mainContainerClass}>
+    <Link href="/" className={mainContainerClass}>
       <BsTriangle className={logoClass} />
       <p className={titleClass}>FakeStore</p>
-    </div>
+    </Link>
   )
 }
