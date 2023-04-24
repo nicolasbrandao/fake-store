@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import { FiShoppingBag } from 'react-icons/fi'
 import { BsPersonCircle } from 'react-icons/bs'
+import Link from 'next/link'
 import Brand from './common/Brand'
 
 export default function Navbar() {
@@ -22,7 +23,9 @@ export default function Navbar() {
       <div className={navListClass}>
         <Brand />
         <ul className={mainLinksContainerClass}>
-          <li>All</li>
+          <li>
+            <Link href="/filter">All</Link>
+          </li>
           <li>New Arrivals</li>
           <li>Featured</li>
         </ul>
