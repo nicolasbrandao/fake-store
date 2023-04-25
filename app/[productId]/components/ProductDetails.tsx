@@ -60,10 +60,7 @@ export default function ProductDetails({ product }: PropsType) {
 
   const ratingsContainerClass = classNames('flex', 'gap-2', 'items-center')
 
-  const relatedProductsTitle = classNames(
-    'text-2xl',
-    'font-bold'
-  )
+  const relatedProductsTitle = classNames('text-2xl', 'font-bold')
 
   return (
     <div className={mainContainerClass}>
