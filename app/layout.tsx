@@ -27,13 +27,24 @@ export default function RootLayout({
     'overflow-x-hidden',
     montserrat.className
   )
+
+  const mainContainerClas = classNames(
+    'min-h-screen',
+    'flex',
+    'flex-col',
+    'pt-[6rem]',
+    'justify-between'
+  )
+
   return (
     <html lang="en">
       <body className={bodyClass}>
         <Providers>
           <Navbar />
-          {children}
-          <Footer />
+          <div className={mainContainerClas}>
+            {children}
+            <Footer />
+          </div>
         </Providers>
       </body>
     </html>
