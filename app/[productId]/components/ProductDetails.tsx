@@ -1,14 +1,111 @@
 import { ProductType } from '@/types'
-import ProductCard from '@/app/components/common/ProductCard'
+import Image from 'next/image'
 import React from 'react'
+import classNames from 'classnames'
+import { Button } from '@chakra-ui/react'
+import { AiOutlineStar } from 'react-icons/ai'
+import { FaRegCommentDots } from 'react-icons/fa'
+import Carousel from '@/app/components/Carousel'
 
 type PropsType = {
   product: ProductType
 }
+
 export default function ProductDetails({ product }: PropsType) {
+  const {
+    description,
+    image,
+    title,
+    category,
+    rating: { rate, count },
+  } = product
+
+  const mainContainerClass = classNames('flex', 'flex-col', 'gap-4')
+
+  const productContainerClass = classNames('flex')
+
+  const imageWrapperClass = classNames(
+    'aspect-square',
+    'w-full',
+    'overflow-clip',
+    'flex',
+    'items-center',
+    'justify-center',
+    'object-cover',
+    'bg-[white]'
+  )
+
+  const productInfoClass = classNames(
+    'flex',
+    'flex-col',
+    'p-4',
+    'w-1/2',
+    'justify-between',
+    'h-3/4'
+  )
+
+  const headerContainerClass = classNames('flex', 'flex-col', 'gap-2')
+
+  const subtitleContainerClass = classNames('flex', 'gap-4')
+
+  const titleClass = classNames('font-bold', 'text-2xl')
+
+  const categoryClass = classNames(
+    'border',
+    'rounded',
+    'w-fit',
+    'p-1',
+    'text-sm'
+  )
+
+  const ratingsContainerClass = classNames('flex', 'gap-2', 'items-center')
+
+  const relatedProductsTitle = classNames(
+    'text-2xl',
+    'font-bold'
+  )
+
   return (
-    <div>
-      <ProductCard product={product} />
+    <div className={mainContainerClass}>
+      <div className={productContainerClass}>
+        <div className={imageWrapperClass}>
+          <Image src={image} width={500} height={500} alt={title} />
+        </div>
+        <div className={productInfoClass}>
+          <div className={headerContainerClass}>
+            <h2 className={titleClass}>{title}</h2>
+            <div className={subtitleContainerClass}>
+              <p className={categoryClass}>{category}</p>
+              <div className={ratingsContainerClass}>
+                <AiOutlineStar />
+                <p>{rate}</p>
+                <FaRegCommentDots />
+                <p>{count}</p>
+              </div>
+            </div>
+          </div>
+
+          <p>{description}</p>
+          <Button
+            size="md"
+            height="48px"
+            width="200px"
+            border="2px"
+            borderColor="white"
+            _hover={{
+              bg: 'lightgray',
+              textColor: 'black',
+              borderColor: 'lightgray',
+            }}
+          >
+            ADD TO CART
+          </Button>
+        </div>
+      </div>
+      <div>
+        <h2 className={relatedProductsTitle}>Related Products</h2>
+        <Carousel />
+      </div>
     </div>
   )
 }
