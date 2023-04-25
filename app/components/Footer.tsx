@@ -4,6 +4,7 @@ import React, { useEffect, useContext } from 'react'
 import classNames from 'classnames'
 import { AiOutlineStar } from 'react-icons/ai'
 import { BiGitRepoForked } from 'react-icons/bi'
+import { FiShoppingBag } from 'react-icons/fi'
 import Brand from './common/Brand'
 import fetchGithubStats from '../lib/fetchGithubStats'
 import { actionTypes, StoreContext } from '../context/store'
@@ -22,14 +23,29 @@ export default function Footer() {
 
   const footerClass = classNames(
     'flex',
-    'h-[15rem]',
+    'h-[10rem]',
     'items-center',
     'justify-between',
     'py-8',
-    'px-[10rem]'
+    'px-[10rem]',
+    'relative',
+    'bottom-0'
   )
 
-  const statsWrapper = classNames(
+  const logosContainerClass = classNames('flex', 'flex-col', 'gap-4')
+
+  const apiContainerClass = classNames('flex', 'gap-2', 'items-center')
+
+  const apiLogoWrapperClass = classNames(
+    'text-3xl',
+    'before:content-["{"]',
+    'after:content-["}"]',
+    'flex',
+    'items-center',
+    'gap-1'
+  )
+
+  const statsWrapperClass = classNames(
     'flex',
     'items-center',
     'justify-center',
@@ -40,8 +56,19 @@ export default function Footer() {
 
   return (
     <footer className={footerClass}>
-      <div>
+      <div className={logosContainerClass}>
         <Brand />
+        <a
+          className={apiContainerClass}
+          href="https://fakestoreapi.com/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div className={apiLogoWrapperClass}>
+            <FiShoppingBag />
+          </div>
+          Fake Store API
+        </a>
       </div>
       <a
         href="https://github.com/nicolasbrandao/fake-store"
@@ -49,7 +76,7 @@ export default function Footer() {
         rel="noreferrer"
       >
         <p>Designed & Built by Nícolas Brandão</p>
-        <div className={statsWrapper}>
+        <div className={statsWrapperClass}>
           <div className={statsContainer}>
             <AiOutlineStar />
             <span>{state.githubStats.stars}</span>
