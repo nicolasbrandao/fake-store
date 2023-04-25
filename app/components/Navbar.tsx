@@ -9,8 +9,9 @@ export default function Navbar() {
     'flex',
     'justify-between',
     'p-6',
-    'sticky',
+    'fixed',
     'top-0',
+    'w-full',
     'z-10',
     'bg-background'
   )
