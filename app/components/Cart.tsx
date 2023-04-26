@@ -1,8 +1,3 @@
-'use client'
-
-import classNames from 'classnames'
-import { FiShoppingBag } from 'react-icons/fi'
-import Link from 'next/link'
 import React from 'react'
 import {
   Drawer,
@@ -11,11 +6,11 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
+  Button,
   useDisclosure,
 } from '@chakra-ui/react'
-import Brand from './common/Brand'
 
-function Cart() {
+export default function Cart() {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const handleClick = () => {
@@ -24,7 +19,9 @@ function Cart() {
 
   return (
     <>
-      <FiShoppingBag onClick={() => handleClick()} />
+      <Button onClick={() => handleClick()} m={4}>
+        Open Cart
+      </Button>
 
       <Drawer onClose={onClose} isOpen={isOpen} size="xs">
         <DrawerOverlay />
@@ -45,39 +42,5 @@ function Cart() {
         </DrawerContent>
       </Drawer>
     </>
-  )
-}
-
-export default function Navbar() {
-  const navClass = classNames(
-    'flex',
-    'justify-between',
-    'p-6',
-    'fixed',
-    'top-0',
-    'w-full',
-    'z-10',
-    'bg-background'
-  )
-  const navListClass = classNames('flex', 'gap-4', 'items-center')
-  const mainLinksContainerClass = classNames('flex', 'gap-4')
-  const cartProfileContainerClass = classNames('flex', 'gap-6', 'text-2xl')
-
-  return (
-    <nav className={navClass}>
-      <div className={navListClass}>
-        <Brand />
-        <ul className={mainLinksContainerClass}>
-          <li>
-            <Link href="/filter">All</Link>
-          </li>
-          <li>New Arrivals</li>
-          <li>Featured</li>
-        </ul>
-      </div>
-      <div className={cartProfileContainerClass}>
-        <Cart />
-      </div>
-    </nav>
   )
 }
