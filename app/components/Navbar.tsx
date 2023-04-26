@@ -81,7 +81,13 @@ function Cart() {
 
   const drawerFooterClass = classNames('flex', 'flex-col')
 
-  const footerTableClass = classNames('w-full', 'text-[black]','flex', 'flex-col', 'gap-1')
+  const footerTableClass = classNames(
+    'w-full',
+    'text-[black]',
+    'flex',
+    'flex-col',
+    'gap-1'
+  )
 
   const tableRowClass = classNames(
     'flex',
