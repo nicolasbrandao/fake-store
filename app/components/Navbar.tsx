@@ -2,11 +2,15 @@
 
 import classNames from 'classnames'
 import { FiShoppingBag } from 'react-icons/fi'
+import { GiGameConsole } from 'react-icons/gi'
+import { AiOutlineMinus, AiOutlinePlus, AiOutlineClose } from 'react-icons/ai'
 import Link from 'next/link'
 import React from 'react'
 import {
+  Button,
   Drawer,
   DrawerBody,
+  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
@@ -15,12 +19,79 @@ import {
 } from '@chakra-ui/react'
 import Brand from './common/Brand'
 
+function CartProductCard() {
+  const mainContainerClass = classNames(
+    'flex',
+    'flex-col',
+    'text-black',
+    'w-full'
+  )
+
+  const headerContainerClass = classNames('flex', 'gap-4', 'items-center')
+
+  const titleClass = classNames('font-bold')
+
+  const footerContainerClass = classNames('flex', 'items-center', 'gap-4')
+
+  const quantityContainerClass = classNames('flex', 'items-center', 'w-full')
+
+  const quantityNumberClass = classNames(
+    'border',
+    'border-[black]',
+    'h-[1.5rem]',
+    'w-full',
+    'px-2'
+  )
+
+  const buttonsClass = classNames(
+    'border',
+    'border-[black]',
+    'text-2xl',
+    'h-[1.5rem]',
+    'w-[1.5rem]'
+  )
+
+  return (
+    <div className={mainContainerClass}>
+      <div className={headerContainerClass}>
+        <GiGameConsole className="text-8xl" />
+        <p className={titleClass}>Product Title</p>
+        <p>$59.90</p>
+      </div>
+      <div className={footerContainerClass}>
+        <AiOutlineClose className={buttonsClass} />
+        <div className={quantityContainerClass}>
+          <p className={quantityNumberClass}>2</p>
+          <AiOutlineMinus className={buttonsClass} />
+          <AiOutlinePlus className={buttonsClass} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function Cart() {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const handleClick = () => {
     onOpen()
   }
+
+  const drawerBodyClass = classNames('flex', 'flex-col', 'gap-4')
+
+  const drawerFooterClass = classNames('flex', 'flex-col')
+
+  const footerTableClass = classNames('w-full', 'text-[black]','flex', 'flex-col', 'gap-1')
+
+  const tableRowClass = classNames(
+    'flex',
+    'justify-between',
+    'first:border-t-[black]',
+    'first:border-t',
+    'last:border-t-[black]',
+    'last:border-t',
+    'last:font-bold'
+  )
 
   return (
     <>
@@ -29,19 +100,48 @@ function Cart() {
       <Drawer onClose={onClose} isOpen={isOpen} size="xs">
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>My Cart</DrawerHeader>
-          <DrawerBody>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Consequat nisl vel pretium lectus quam id. Semper quis lectus
-              nulla at volutpat diam ut venenatis. Dolor morbi non arcu risus
-              quis varius quam quisque. Massa ultricies mi quis hendrerit dolor
-              magna eget est lorem. Erat imperdiet sed euismod nisi porta.
-              Lectus vestibulum mattis ullamcorper velit.
-            </p>
+          <DrawerCloseButton color="black" />
+          <DrawerHeader color="black">My Cart</DrawerHeader>
+          <DrawerBody className={drawerBodyClass}>
+            <CartProductCard />
+            <CartProductCard />
+            <CartProductCard />
           </DrawerBody>
+          <DrawerFooter className={drawerFooterClass}>
+            <div className={footerTableClass}>
+              <div className={tableRowClass}>
+                <p>Subtotal</p>
+                <p>$159.00</p>
+              </div>
+              <div className={tableRowClass}>
+                <p>Taxes</p>
+                <p>$0.00</p>
+              </div>
+              <div className={tableRowClass}>
+                <p>Shipping</p>
+                <p>Calculated at checkout</p>
+              </div>
+              <div className={tableRowClass}>
+                <p>Total</p>
+                <p>$159.00</p>
+              </div>
+            </div>
+            <Button
+              size="md"
+              height="48px"
+              border="2px"
+              textColor="black"
+              borderColor="black"
+              marginTop="10px"
+              _hover={{
+                bg: 'black',
+                textColor: 'white',
+                borderColor: 'black',
+              }}
+            >
+              PROCEED TO CHECKOUT
+            </Button>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>
