@@ -12,7 +12,7 @@ export default function Carousel() {
   const { state, dispatch } = useContext(StoreContext)
 
   useEffect(() => {
-    fetchProducts({ limit: 6, sort: 'desc' }).then((data) => {
+    fetchProducts({ limit: 8, sort: 'desc' }).then((data) => {
       dispatch({
         type: actionTypes.fetchCarouselProducts,
         payload: data,
