@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 interface FetchAllProductsParams {
   limit?: number
   sort?: string
@@ -18,7 +16,9 @@ export default async function fetchProducts(params?: FetchAllProductsParams) {
       }
     }
 
-    const { data } = await axios.get(url.toString())
+    const response = await fetch(url.toString())
+    const data = await response.json()
+
     return data
   } catch (error) {
     console.error(`Error fetching products: ${error}`)
