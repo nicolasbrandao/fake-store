@@ -13,7 +13,7 @@ export default function Showcase() {
   useEffect(() => {
     fetchProducts({ limit: 3 }).then((data) => {
       dispatch({
-        type: actionTypes.fetchAllProducts,
+        type: actionTypes.fetchShowcaseProducts,
         payload: data,
       })
     })
@@ -27,7 +27,7 @@ export default function Showcase() {
 
   return (
     <section className={productsContainerClass}>
-      {state.productsList.map((product: ProductType) => (
+      {state.showcaseProductsList.map((product: ProductType) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </section>
