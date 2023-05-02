@@ -32,7 +32,12 @@ export default function Footer() {
     'bottom-0'
   )
 
-  const logosContainerClass = classNames('flex', 'flex-col', 'gap-4', 'items-center')
+  const logosContainerClass = classNames(
+    'flex',
+    'flex-col',
+    'gap-4',
+    'items-center'
+  )
 
   const apiContainerClass = classNames('flex', 'gap-2', 'items-center')
 
