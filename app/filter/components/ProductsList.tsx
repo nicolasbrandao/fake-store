@@ -1,24 +1,14 @@
 'use client'
 
-import { useEffect, useContext } from 'react'
 import { ProductType } from '@/types'
 import classNames from 'classnames'
-import fetchProducts from '../../lib/fetchProducts'
-import { actionTypes, StoreContext } from '../../context/store'
 import ProductCard from '../../components/common/ProductCard'
 
-export default function Showcase() {
-  const { state, dispatch } = useContext(StoreContext)
+type PropsType = {
+  products: ProductType[]
+}
 
-  useEffect(() => {
-    fetchProducts().then((data) => {
-      dispatch({
-        type: actionTypes.fetchAllProducts,
-        payload: data,
-      })
-    })
-  }, [dispatch])
-
+export default function ProductsList({ products }: PropsType) {
   const productsContainerClass = classNames(
     'grid',
     'grid-cols-1',
@@ -28,7 +18,7 @@ export default function Showcase() {
 
   return (
     <section className={productsContainerClass}>
-      {state.productsList.map((product: ProductType) => (
+      {products.map((product: ProductType) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </section>

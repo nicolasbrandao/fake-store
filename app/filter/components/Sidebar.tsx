@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useContext } from 'react'
+import Link from 'next/link'
 import { actionTypes, StoreContext } from '../../context/store'
 import fetchCategories from '../../lib/fetchCategories'
 
@@ -20,9 +21,13 @@ export default function Sidebar() {
     <div>
       <ul>
         <li>Categories</li>
-        <li>All</li>
+        <li>
+          <Link href="/filter">All</Link>
+        </li>
         {state.categories.map((category: string) => (
-          <li key={category}>{category}</li>
+          <li key={category}>
+            <Link href={`/filter/${category}`}>{category}</Link>
+          </li>
         ))}
       </ul>
     </div>

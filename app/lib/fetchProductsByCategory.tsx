@@ -1,11 +1,14 @@
 interface Params {
   limit?: number
   sort?: string
+  category: string
 }
 
-export default async function fetchProducts(params?: Params) {
+export default async function fetchProductsByCategory(params: Params) {
   try {
-    const url = new URL('https://fakestoreapi.com/products')
+    const url = new URL(
+      `https://fakestoreapi.com/products/category/${params.category}`
+    )
 
     if (params) {
       if (params.limit) {

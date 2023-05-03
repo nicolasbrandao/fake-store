@@ -1,4 +1,6 @@
 import React from 'react'
+import classNames from 'classnames'
+import Sidebar from './components/Sidebar'
 
 export const metadata = {
   title: 'FakeStore',
@@ -10,5 +12,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  return children
+  const filterContainerClass = classNames('flex')
+
+  return (
+    <main className={filterContainerClass}>
+      <Sidebar />
+      {children}
+    </main>
+  )
 }
