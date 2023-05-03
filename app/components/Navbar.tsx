@@ -175,10 +175,8 @@ export default function Navbar() {
         <Brand />
         <ul className={mainLinksContainerClass}>
           <li>
-            <Link href="/filter">All</Link>
+            <Link href="/filter">Filters</Link>
           </li>
-          <li>New Arrivals</li>
-          <li>Featured</li>
         </ul>
       </div>
       <div className={cartProfileContainerClass}>
