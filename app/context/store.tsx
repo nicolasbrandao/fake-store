@@ -11,6 +11,9 @@ export const actionTypes = {
   fetchSingleProduct: 'fetchSingleProduct',
   fetchCategories: 'fetchCategories',
   fetchGithubStats: 'fetchGithubStats',
+  addProductToCart: 'addProductToCart',
+  removeProductFromCart: 'removeProductFromCart',
+  removeAllProductOcurrencesFromCart: 'removeAllProductOcurrencesFromCart',
 }
 
 type StateType = {
@@ -24,6 +27,7 @@ type StateType = {
     stars: number
     forks: number
   }
+  cartProductsList: ProductType[]
 }
 
 type ActionType = {
@@ -53,6 +57,7 @@ const initialState: StateType = {
     stars: 0,
     forks: 0,
   },
+  cartProductsList: [],
 }
 
 const reducer = (state: StateType, action: ActionType) => {
@@ -94,6 +99,42 @@ const reducer = (state: StateType, action: ActionType) => {
       return {
         ...state,
         singleProduct: action.payload,
+      }
+    case actionTypes.addProductToCart:
+      return {
+        ...state,
+        cartProductsList: [action.payload, ...state.cartProductsList],
+      }
+    case actionTypes.removeProductFromCart:
+      if (
+        state.cartProductsList.findIndex(
+          (product) => product.id === action.payload
+        ) !== -1
+      ) {
+        return {
+          ...state,
+          cartProductsList: [
+            ...state.cartProductsList.slice(
+              0,
+              state.cartProductsList.findIndex(
+                (product) => product.id === action.payload
+              )
+            ),
+            ...state.cartProductsList.slice(
+              state.cartProductsList.findIndex(
+                (product) => product.id === action.payload
+              ) + 1
+            ),
+          ],
+        }
+      }
+      return state
+    case actionTypes.removeAllProductOcurrencesFromCart:
+      return {
+        ...state,
+        cartProductsList: state.cartProductsList.filter(
+          (product) => product.id !== action.payload
+        ),
       }
     default:
       return state
