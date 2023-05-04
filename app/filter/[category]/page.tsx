@@ -5,13 +5,13 @@ import { StoreContext, actionTypes } from '@/app/context/store'
 import fetchProductsByCategory from '@/app/lib/fetchProductsByCategory'
 import ProductsList from '../components/ProductsList'
 
-type Params = {
+type PropsType = {
   params: {
     category: string
   }
 }
 
-export default function CategoryFilter({ params: { category } }: Params) {
+export default function CategoryFilter({ params: { category } }: PropsType) {
   const { state, dispatch } = useContext(StoreContext)
 
   useEffect(() => {

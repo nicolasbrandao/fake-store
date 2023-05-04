@@ -57,7 +57,11 @@ export default function Footer() {
     'gap-4'
   )
 
-  const statsContainer = classNames('flex', 'items-center', 'justify-center')
+  const statsContainerClass = classNames(
+    'flex',
+    'items-center',
+    'justify-center'
+  )
 
   return (
     <footer className={footerClass}>
@@ -82,11 +86,11 @@ export default function Footer() {
       >
         <p>Designed & Built by Nícolas Brandão</p>
         <div className={statsWrapperClass}>
-          <div className={statsContainer}>
+          <div className={statsContainerClass}>
             <AiOutlineStar />
             <span>{state.githubStats.stars}</span>
           </div>
-          <div className={statsContainer}>
+          <div className={statsContainerClass}>
             <BiGitRepoForked />
             <span>{state.githubStats.forks}</span>
           </div>

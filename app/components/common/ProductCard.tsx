@@ -26,15 +26,16 @@ export default function ProductCard({ product }: PropsType) {
 
   const titleClass = classNames(
     'bg-background',
-    'm-w-full',
+    'w-fit',
     'text-4xl',
-    'font-bold'
+    'font-bold',
+    'p-2'
   )
 
   const priceClass = classNames(
     'bg-background',
     'w-fit',
-    'text-3xl',
+    'text-2xl',
     'font-bold',
     'p-2'
   )

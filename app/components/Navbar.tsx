@@ -275,8 +275,11 @@ export default function Navbar() {
     'z-10',
     'bg-background'
   )
+
   const navListClass = classNames('flex', 'gap-4', 'items-center')
+
   const mainLinksContainerClass = classNames('flex', 'gap-4')
+
   const cartProfileContainerClass = classNames('flex', 'gap-6', 'text-2xl')
 
   return (
