@@ -1,7 +1,7 @@
 'use client'
 
 import classNames from 'classnames'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import ProductDetails from './components/ProductDetails'
 import fetchSingleProduct from '../lib/fetchSingleProduct'
 import { actionTypes, StoreContext } from '../context/store'
@@ -15,14 +15,12 @@ type Params = {
 export default function Product({ params: { productId } }: Params) {
   const { state, dispatch } = useContext(StoreContext)
 
-  useEffect(() => {
-    fetchSingleProduct(productId).then((data) => {
-      dispatch({
-        type: actionTypes.fetchSingleProduct,
-        payload: data,
-      })
+  fetchSingleProduct(productId).then((data) => {
+    dispatch({
+      type: actionTypes.fetchSingleProduct,
+      payload: data,
     })
-  }, [dispatch, productId])
+  })
 
   const filterContainerClass = classNames('flex')
   return (
