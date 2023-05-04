@@ -79,7 +79,7 @@ export default function ProductDetails({ product }: PropsType) {
 
   const priceClass = classNames('font-bold', 'text-2xl')
 
-  const relatedProductsTitle = classNames('text-2xl', 'font-bold')
+  const relatedProductsTitleClass = classNames('text-2xl', 'font-bold')
 
   return (
     <div className={mainContainerClass}>
@@ -122,7 +122,7 @@ export default function ProductDetails({ product }: PropsType) {
         </div>
       </div>
       <div>
-        <h2 className={relatedProductsTitle}>Related Products</h2>
+        <h2 className={relatedProductsTitleClass}>Related Products</h2>
         <Carousel />
       </div>
     </div>
