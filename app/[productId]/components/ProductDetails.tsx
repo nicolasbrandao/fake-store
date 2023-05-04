@@ -58,7 +58,7 @@ export default function ProductDetails({ product }: PropsType) {
     'p-4',
     'w-1/2',
     'justify-between',
-    'h-3/4'
+    'h-full'
   )
 
   const headerContainerClass = classNames('flex', 'flex-col', 'gap-2')
