@@ -12,7 +12,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const filterContainerClass = classNames('flex')
+  const filterContainerClass = classNames('flex', 'flex-col', 'md:flex-row')
 
   return (
     <main className={filterContainerClass}>

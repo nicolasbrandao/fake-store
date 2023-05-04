@@ -39,7 +39,7 @@ export default function ProductDetails({ product }: PropsType) {
 
   const mainContainerClass = classNames('flex', 'flex-col', 'gap-4')
 
-  const productContainerClass = classNames('flex')
+  const productContainerClass = classNames('flex', 'flex-col', 'md:flex-row')
 
   const imageWrapperClass = classNames(
     'aspect-square',
@@ -56,7 +56,8 @@ export default function ProductDetails({ product }: PropsType) {
     'flex',
     'flex-col',
     'p-4',
-    'w-1/2',
+    'w-full',
+    'md:w-1/2',
     'justify-between',
     'h-full'
   )

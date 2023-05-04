@@ -33,7 +33,8 @@ export default function RootLayout({
     'flex',
     'flex-col',
     'pt-[6rem]',
-    'justify-between'
+    'justify-between',
+    'items-center'
   )
 
   return (
