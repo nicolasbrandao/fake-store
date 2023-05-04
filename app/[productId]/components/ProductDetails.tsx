@@ -65,7 +65,7 @@ export default function ProductDetails({ product }: PropsType) {
 
   const subtitleContainerClass = classNames('flex', 'gap-4')
 
-  const titleClass = classNames('font-bold', 'text-2xl')
+  const titleClass = classNames('font-bold', 'text-3xl')
 
   const categoryClass = classNames(
     'border',
@@ -77,7 +77,7 @@ export default function ProductDetails({ product }: PropsType) {
 
   const ratingsContainerClass = classNames('flex', 'gap-2', 'items-center')
 
-  const priceClass = classNames('font-bold', 'text-xl')
+  const priceClass = classNames('font-bold', 'text-2xl')
 
   const relatedProductsTitle = classNames('text-2xl', 'font-bold')
 
