@@ -10,3 +10,8 @@ export type ProductType = {
     count: number
   }
 }
+
+export type ActionType<T> = {
+  type: string
+  payload: T
+}

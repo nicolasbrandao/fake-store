@@ -3,13 +3,13 @@
 import React from 'react'
 import { CacheProvider } from '@chakra-ui/next-js'
 import { ChakraProvider } from '@chakra-ui/react'
-import { StoreContextProvider } from './context/store'
+import { CartProvider } from './context/cart'
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <CacheProvider>
       <ChakraProvider>
-        <StoreContextProvider>{children}</StoreContextProvider>
+        <CartProvider>{children}</CartProvider>
       </ChakraProvider>
     </CacheProvider>
   )

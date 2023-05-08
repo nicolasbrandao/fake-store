@@ -16,10 +16,9 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { ProductType } from '@/types'
-import { useContext } from 'react'
 import Image from 'next/image'
 import Brand from './common/Brand'
-import { StoreContext, actionTypes } from '../context/store'
+import { actionTypes, useCart } from '../context/cart'
 
 type CartProductPropsType = {
   product: ProductType
@@ -32,9 +31,9 @@ const formatter = new Intl.NumberFormat('en-US', {
 
 function CartProductCard({ product }: CartProductPropsType) {
   const { id, title, price, image } = product
-  const { state, dispatch } = useContext(StoreContext)
+  const { cartProducts, dispatch } = useCart()
 
-  const quantity = state.cartProductsList.filter(
+  const quantity = cartProducts.filter(
     (productObj) => productObj.id === id
   ).length
 
@@ -146,19 +145,16 @@ function CartProductCard({ product }: CartProductPropsType) {
 
 function Cart() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { state } = useContext(StoreContext)
+  const { cartProducts } = useCart()
 
   const cartUniqueProductsList: ProductType[] = Object.values(
-    state.cartProductsList.reduce((acc: Record<number, ProductType>, obj) => {
+    cartProducts.reduce((acc: Record<number, ProductType>, obj) => {
       acc[obj.id] = obj
       return acc
     }, {})
   )
 
-  const totalPrice = state.cartProductsList.reduce(
-    (acc, item) => acc + item.price,
-    0
-  )
+  const totalPrice = cartProducts.reduce((acc, item) => acc + item.price, 0)
 
   const handleClick = () => {
     onOpen()
@@ -177,7 +173,7 @@ function Cart() {
     'absolute',
     'top-4',
     'left-3',
-    state.cartProductsList.length === 0 ? 'hidden' : 'flex',
+    cartProducts.length === 0 ? 'hidden' : 'flex',
     'items-center',
     'justify-center'
   )
@@ -208,9 +204,7 @@ function Cart() {
     <>
       <div className={cartIconContainerClass}>
         <FiShoppingBag onClick={() => handleClick()} />
-        <p className={cartLengthContainerClass}>
-          {state.cartProductsList.length}
-        </p>
+        <p className={cartLengthContainerClass}>{cartProducts.length}</p>
       </div>
 
       <Drawer onClose={onClose} isOpen={isOpen} size="xs">

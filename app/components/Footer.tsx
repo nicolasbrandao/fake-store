@@ -1,35 +1,27 @@
 'use client'
 
-import React, { useEffect, useContext } from 'react'
 import classNames from 'classnames'
 import { AiOutlineStar } from 'react-icons/ai'
 import { BiGitRepoForked } from 'react-icons/bi'
 import { FiShoppingBag } from 'react-icons/fi'
 import Brand from './common/Brand'
-import fetchGithubStats from '../lib/fetchGithubStats'
-import { actionTypes, StoreContext } from '../context/store'
+import { GithubStatsProvider, useGithubStats } from '../context/githubStats'
 
-export default function Footer() {
-  const { state, dispatch } = useContext(StoreContext)
-
-  useEffect(() => {
-    fetchGithubStats().then(({ stargazers_count, forks_count }) => {
-      dispatch({
-        type: actionTypes.fetchGithubStats,
-        payload: { stargazers_count, forks_count },
-      })
-    })
-  }, [dispatch])
+function FooterContent() {
+  const githubStats = useGithubStats()
 
   const footerClass = classNames(
     'flex',
-    'h-[10rem]',
+    'flex-col',
+    'w-fit',
+    'md:flex-row',
+    'h-[15rem]',
     'items-center',
     'justify-between',
     'py-8',
-    'px-[10rem]',
     'relative',
-    'bottom-0'
+    'bottom-0',
+    'gap-4'
   )
 
   const logosContainerClass = classNames(
@@ -88,14 +80,22 @@ export default function Footer() {
         <div className={statsWrapperClass}>
           <div className={statsContainerClass}>
             <AiOutlineStar />
-            <span>{state.githubStats.stars}</span>
+            <span>{githubStats.stars}</span>
           </div>
           <div className={statsContainerClass}>
             <BiGitRepoForked />
-            <span>{state.githubStats.forks}</span>
+            <span>{githubStats.forks}</span>
           </div>
         </div>
       </a>
     </footer>
+  )
+}
+
+export default function Footer() {
+  return (
+    <GithubStatsProvider>
+      <FooterContent />
+    </GithubStatsProvider>
   )
 }

@@ -1,10 +1,8 @@
 'use client'
 
 import classNames from 'classnames'
-import { useContext } from 'react'
 import ProductDetails from './components/ProductDetails'
-import fetchSingleProduct from '../lib/fetchSingleProduct'
-import { actionTypes, StoreContext } from '../context/store'
+import { SingleProductProvider } from '../context/singleProduct'
 
 type PropsType = {
   params: {
@@ -12,20 +10,19 @@ type PropsType = {
   }
 }
 
-export default function Product({ params: { productId } }: PropsType) {
-  const { state, dispatch } = useContext(StoreContext)
-
-  fetchSingleProduct(productId).then((data) => {
-    dispatch({
-      type: actionTypes.fetchSingleProduct,
-      payload: data,
-    })
-  })
-
+function ProductContent() {
   const filterContainerClass = classNames('flex')
   return (
     <main className={filterContainerClass}>
-      <ProductDetails product={state.singleProduct} />
+      <ProductDetails />
     </main>
+  )
+}
+
+export default function Product({ params: { productId } }: PropsType) {
+  return (
+    <SingleProductProvider productId={productId}>
+      <ProductContent />
+    </SingleProductProvider>
   )
 }

@@ -1,22 +1,11 @@
 'use client'
 
-import React, { useEffect, useContext } from 'react'
 import Link from 'next/link'
 import classNames from 'classnames'
-import { actionTypes, StoreContext } from '../../context/store'
-import fetchCategories from '../../lib/fetchCategories'
+import { useCategories, CategoriesProvider } from '@/app/context/categories'
 
-export default function Sidebar() {
-  const { state, dispatch } = useContext(StoreContext)
-
-  useEffect(() => {
-    fetchCategories().then((data) => {
-      dispatch({
-        type: actionTypes.fetchCategories,
-        payload: data,
-      })
-    })
-  }, [dispatch])
+function SidebarContent() {
+  const { categories } = useCategories()
 
   const categoriesListClass = classNames(
     'p-4',
@@ -34,11 +23,19 @@ export default function Sidebar() {
       <li>
         <Link href="/filter">all</Link>
       </li>
-      {state.categories.map((category: string) => (
+      {categories.map((category: string) => (
         <li key={category}>
           <Link href={`/filter/${category}`}>{category}</Link>
         </li>
       ))}
     </ul>
+  )
+}
+
+export default function Sidebar() {
+  return (
+    <CategoriesProvider>
+      <SidebarContent />
+    </CategoriesProvider>
   )
 }

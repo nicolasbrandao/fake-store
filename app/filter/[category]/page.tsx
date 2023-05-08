@@ -1,8 +1,9 @@
 'use client'
 
-import { useContext, useEffect } from 'react'
-import { StoreContext, actionTypes } from '@/app/context/store'
-import fetchProductsByCategory from '@/app/lib/fetchProductsByCategory'
+import {
+  ProductsByCategoryProvider,
+  useProductsByCategory,
+} from '@/app/context/productsByCategory'
 import ProductsList from '../components/ProductsList'
 
 type PropsType = {
@@ -11,17 +12,16 @@ type PropsType = {
   }
 }
 
+function CategoryFilterContent() {
+  const { productsByCategory } = useProductsByCategory()
+
+  return <ProductsList products={productsByCategory} />
+}
+
 export default function CategoryFilter({ params: { category } }: PropsType) {
-  const { state, dispatch } = useContext(StoreContext)
-
-  useEffect(() => {
-    fetchProductsByCategory({ category }).then((data) => {
-      dispatch({
-        type: actionTypes.fetchProductsByCategory,
-        payload: data,
-      })
-    })
-  }, [dispatch, category])
-
-  return <ProductsList products={state.productsByCategoryList} />
+  return (
+    <ProductsByCategoryProvider category={category}>
+      <CategoryFilterContent />
+    </ProductsByCategoryProvider>
+  )
 }

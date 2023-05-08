@@ -1,8 +1,12 @@
+import { ProductType } from '@/types'
+
 interface Params {
   limit?: number
   sort?: string
   category: string
 }
+
+export type ProductsPayloadType = ProductType[]
 
 export default async function fetchProductsByCategory(params: Params) {
   try {
@@ -20,9 +24,9 @@ export default async function fetchProductsByCategory(params: Params) {
     }
 
     const response = await fetch(url.toString())
-    const data = await response.json()
+    const data = (await response.json()) as ProductsPayloadType
 
-    return data
+    return data as ProductsPayloadType
   } catch (error) {
     console.error(`Error fetching products: ${error}`)
     throw error

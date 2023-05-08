@@ -1,23 +1,12 @@
 'use client'
 
-import { useEffect, useContext } from 'react'
 import { ProductType } from '@/types'
 import classNames from 'classnames'
-import fetchProducts from '../lib/fetchProducts'
-import { actionTypes, StoreContext } from '../context/store'
 import ProductCard from './common/ProductCard'
+import { ShowcaseProvider, useShowcaseProducts } from '../context/showcase'
 
-export default function Showcase() {
-  const { state, dispatch } = useContext(StoreContext)
-
-  useEffect(() => {
-    fetchProducts({ limit: 3 }).then((data) => {
-      dispatch({
-        type: actionTypes.fetchShowcaseProducts,
-        payload: data,
-      })
-    })
-  }, [dispatch])
+function ShowcaseContent() {
+  const { showcaseProducts } = useShowcaseProducts()
 
   const productsContainerClass = classNames(
     'lg:grid',
@@ -27,9 +16,17 @@ export default function Showcase() {
 
   return (
     <section className={productsContainerClass}>
-      {state.showcaseProductsList.map((product: ProductType) => (
+      {showcaseProducts.slice(0, 3).map((product: ProductType) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </section>
+  )
+}
+
+export default function Showcase() {
+  return (
+    <ShowcaseProvider>
+      <ShowcaseContent />
+    </ShowcaseProvider>
   )
 }

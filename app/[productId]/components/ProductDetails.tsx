@@ -1,36 +1,26 @@
-import { ProductType } from '@/types'
 import Image from 'next/image'
-import React, { useContext } from 'react'
+import React from 'react'
 import classNames from 'classnames'
 import { Button } from '@chakra-ui/react'
 import { AiOutlineStar } from 'react-icons/ai'
 import { FaRegCommentDots } from 'react-icons/fa'
 import Carousel from '@/app/components/Carousel'
 import Link from 'next/link'
-import { StoreContext, actionTypes } from '@/app/context/store'
-
-type PropsType = {
-  product: ProductType
-}
+import { ProductType } from '@/types'
+import { actionTypes, useCart } from '@/app/context/cart'
+import { useSingleProduct } from '@/app/context/singleProduct'
 
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
 })
 
-export default function ProductDetails({ product }: PropsType) {
-  const {
-    description,
-    image,
-    title,
-    category,
-    price,
-    rating: { rate, count },
-  } = product
+export default function ProductDetails() {
+  const { singleProduct } = useSingleProduct()
 
-  const { dispatch } = useContext(StoreContext)
+  const { dispatch } = useCart()
 
-  const handleAddProductToCart = () => {
+  const handleAddProductToCart = (product: ProductType) => {
     dispatch({
       type: actionTypes.addProductToCart,
       payload: product,
@@ -86,25 +76,32 @@ export default function ProductDetails({ product }: PropsType) {
     <div className={mainContainerClass}>
       <div className={productContainerClass}>
         <div className={imageWrapperClass}>
-          <Image src={image} width={500} height={500} alt={title} />
+          <Image
+            src={singleProduct.image}
+            width={500}
+            height={500}
+            alt={singleProduct.title}
+            style={{ width: 'auto', height: 'auto' }}
+            priority
+          />
         </div>
         <div className={productInfoClass}>
           <div className={headerContainerClass}>
-            <h2 className={titleClass}>{title}</h2>
+            <h2 className={titleClass}>{singleProduct.title}</h2>
             <div className={subtitleContainerClass}>
-              <Link href={`/filter/${category}`}>
-                <p className={categoryClass}>{category}</p>
+              <Link href={`/filter/${singleProduct.category}`}>
+                <p className={categoryClass}>{singleProduct.category}</p>
               </Link>
               <div className={ratingsContainerClass}>
                 <AiOutlineStar />
-                <p>{rate}</p>
+                <p>{singleProduct.rating.rate}</p>
                 <FaRegCommentDots />
-                <p>{count}</p>
+                <p>{singleProduct.rating.count}</p>
               </div>
             </div>
           </div>
-          <p className={priceClass}>{formatter.format(price)}</p>
-          <p>{description}</p>
+          <p className={priceClass}>{formatter.format(singleProduct.price)}</p>
+          <p>{singleProduct.description}</p>
           <Button
             size="md"
             height="48px"
@@ -116,7 +113,7 @@ export default function ProductDetails({ product }: PropsType) {
               textColor: 'black',
               borderColor: 'lightgray',
             }}
-            onClick={handleAddProductToCart}
+            onClick={() => handleAddProductToCart(singleProduct)}
           >
             ADD TO CART
           </Button>

@@ -1,3 +1,8 @@
+export type GithubStatsPayloadType = {
+  stargazers_count: number
+  forks_count: number
+}
+
 export default async function fetchGithubStats() {
   try {
     const url = new URL(
@@ -5,9 +10,10 @@ export default async function fetchGithubStats() {
     )
 
     const response = await fetch(url.toString())
-    const data = await response.json()
+    const { stargazers_count, forks_count } =
+      (await response.json()) as GithubStatsPayloadType
 
-    return data
+    return { stargazers_count, forks_count } as GithubStatsPayloadType
   } catch (error) {
     console.error(`Error fetching Github stats: ${error}`)
     throw error
