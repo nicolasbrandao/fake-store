@@ -12,7 +12,7 @@ import { ActionType, ProductType } from '@/types'
 export const actionTypes = {
   addProductToCart: 'ADD_PRODUCT_TO_CART',
   removeProductFromCart: 'REMOVE_PRODUCT_FROM_CART',
-  removeAllProductOcurrencesFromCart: 'REMOVE_ALL_PRODUCT_OCURRENCES_FROM_CART',
+  clearProductInCart: 'CLEAR_PRODUCT_IN_CART',
 }
 
 type StateType = {
@@ -57,7 +57,7 @@ const reducer = (
         }
       }
       return state
-    case actionTypes.removeAllProductOcurrencesFromCart:
+    case actionTypes.clearProductInCart:
       return {
         ...state,
         cartProducts: state.cartProducts.filter(

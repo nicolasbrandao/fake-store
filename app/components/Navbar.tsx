@@ -37,9 +37,9 @@ function CartProductCard({ product }: CartProductPropsType) {
     (productObj) => productObj.id === id
   ).length
 
-  const handleRemoveAllProductOcurrencesFromCart = (productId: number) => {
+  const handleClearProductInCart = (productId: number) => {
     dispatch({
-      type: actionTypes.removeAllProductOcurrencesFromCart,
+      type: actionTypes.clearProductInCart,
       payload: productId,
     })
   }
@@ -125,7 +125,7 @@ function CartProductCard({ product }: CartProductPropsType) {
       <div className={footerContainerClass}>
         <AiOutlineClose
           className={buttonsClass}
-          onClick={() => handleRemoveAllProductOcurrencesFromCart(id)}
+          onClick={() => handleClearProductInCart(id)}
         />
         <div className={quantityContainerClass}>
           <p className={quantityNumberClass}>{quantity}</p>
