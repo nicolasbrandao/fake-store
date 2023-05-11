@@ -9,7 +9,7 @@ export default async function fetchCategories() {
 
     return data as CategoriesPayloadType
   } catch (error) {
-    console.error(`Error fetching products: ${error}`)
+    console.error(`Error fetching categories: ${error}`)
     throw error
   }
 }

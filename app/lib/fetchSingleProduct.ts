@@ -11,7 +11,7 @@ export default async function fetchSingleProduct(productId: number) {
 
     return data as SingleProductPayloadType
   } catch (error) {
-    console.error(`Error fetching products: ${error}`)
+    console.error(`Error fetching product: ${error}`)
     throw error
   }
 }
