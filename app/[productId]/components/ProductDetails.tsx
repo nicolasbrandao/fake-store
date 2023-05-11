@@ -78,10 +78,10 @@ export default function ProductDetails() {
         <div className={imageWrapperClass}>
           <Image
             src={singleProduct.image}
+            alt={singleProduct.title}
             width={500}
             height={500}
-            alt={singleProduct.title}
-            style={{ width: 'auto', height: 'auto' }}
+            style={{ width: 500, height: 'auto' }}
             priority
           />
         </div>
