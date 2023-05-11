@@ -8,7 +8,7 @@ import Brand from './common/Brand'
 import { GithubStatsProvider, useGithubStats } from '../context/githubStats'
 
 function FooterContent() {
-  const githubStats = useGithubStats()
+  const { stars, forks } = useGithubStats()
 
   const footerClass = classNames(
     'flex',
@@ -80,11 +80,11 @@ function FooterContent() {
         <div className={statsWrapperClass}>
           <div className={statsContainerClass}>
             <AiOutlineStar />
-            <span>{githubStats.stars}</span>
+            <span>{stars}</span>
           </div>
           <div className={statsContainerClass}>
             <BiGitRepoForked />
-            <span>{githubStats.forks}</span>
+            <span>{forks}</span>
           </div>
         </div>
       </a>
