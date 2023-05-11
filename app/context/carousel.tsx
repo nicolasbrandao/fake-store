@@ -7,6 +7,7 @@ import React, {
   useEffect,
   PropsWithChildren,
   Dispatch,
+  useMemo,
 } from 'react'
 import { ActionType, ProductType } from '@/types'
 import fetchProducts, { ProductsPayloadType } from '@/app/lib/fetchProducts'
@@ -54,7 +55,7 @@ function makeActions(
 export function CorouselProvider({ children }: PropsWithChildren) {
   const [carouselProducts, dispatch] = useReducer(reducer, initialState)
 
-  const actions = makeActions(dispatch)
+  const actions = useMemo(() => makeActions(dispatch), [dispatch])
 
   useEffect(() => {
     actions.fetchCarouselProducts()

@@ -7,6 +7,7 @@ import React, {
   useEffect,
   PropsWithChildren,
   Dispatch,
+  useMemo,
 } from 'react'
 import { ActionType, ProductType } from '@/types'
 import fetchProductsByCategory, {
@@ -62,7 +63,10 @@ export function ProductsByCategoryProvider({
 }: ProductsByCategoryProviderProps) {
   const [productsByCategory, dispatch] = useReducer(reducer, initialState)
 
-  const actions = makeActions(dispatch, category)
+  const actions = useMemo(
+    () => makeActions(dispatch, category),
+    [dispatch, category]
+  )
 
   useEffect(() => {
     actions.fetchProductsByCategory()

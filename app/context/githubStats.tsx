@@ -10,6 +10,7 @@ import {
   createContext,
   useContext,
   useEffect,
+  useMemo,
   useReducer,
 } from 'react'
 
@@ -57,7 +58,7 @@ function makeActions(dispatch: Dispatch<ReturnType<typeof makeGithubStats>>) {
 export function GithubStatsProvider({ children }: PropsWithChildren) {
   const [githubStats, dispatch] = useReducer(reducer, initialState)
 
-  const actions = makeActions(dispatch)
+  const actions = useMemo(() => makeActions(dispatch), [dispatch])
 
   useEffect(() => {
     actions.fetchGithubStats()

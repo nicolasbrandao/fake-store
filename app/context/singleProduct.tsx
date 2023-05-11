@@ -7,6 +7,7 @@ import React, {
   useEffect,
   PropsWithChildren,
   Dispatch,
+  useMemo,
 } from 'react'
 import { ActionType, ProductType } from '@/types'
 import fetchSingleProduct, {
@@ -76,7 +77,10 @@ export function SingleProductProvider({
 }: SingleProductProviderProps) {
   const [singleProduct, dispatch] = useReducer(reducer, initialState)
 
-  const actions = makeActions(dispatch, productId)
+  const actions = useMemo(
+    () => makeActions(dispatch, productId),
+    [dispatch, productId]
+  )
 
   useEffect(() => {
     actions.fetchSingleProduct()
