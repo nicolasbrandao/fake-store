@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react'
 import { ProductType } from '@/types'
 import Image from 'next/image'
+import Link from 'next/link'
 import { actionTypes, useCart } from '../context/cart'
 
 const formatter = new Intl.NumberFormat('en-US', {
@@ -111,13 +112,15 @@ function CartProductCard({ product }: CartProductPropsType) {
 
   return (
     <div className={mainContainerClass}>
-      <div className={headerContainerClass}>
-        <div className={imageContainerClass}>
-          <Image src={image} alt={title} height={50} width={50} />
+      <Link href={`/${id}`}>
+        <div className={headerContainerClass}>
+          <div className={imageContainerClass}>
+            <Image src={image} alt={title} height={50} width={50} />
+          </div>
+          <p className={titleClass}>{truncatedTitle}</p>
+          <p className={priceClass}>{formatter.format(price * quantity)}</p>
         </div>
-        <p className={titleClass}>{truncatedTitle}</p>
-        <p className={priceClass}>{formatter.format(price * quantity)}</p>
-      </div>
+      </Link>
       <div className={footerContainerClass}>
         <AiOutlineClose
           className={buttonsClass}
@@ -210,7 +213,7 @@ export default function Cart() {
           <DrawerHeader color="black">My Cart</DrawerHeader>
           <DrawerBody className={drawerBodyClass}>
             {cartUniqueProductsList.map((product: ProductType) => (
-              <CartProductCard product={product} />
+              <CartProductCard product={product} key={product.title} />
             ))}
           </DrawerBody>
           <DrawerFooter className={drawerFooterClass}>
