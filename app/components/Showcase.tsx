@@ -14,13 +14,13 @@ function ShowcaseContent() {
     'lg:grid-rows-2'
   )
 
-  return (
-    <section className={productsContainerClass}>
-      {showcaseProducts.slice(0, 3).map((product: ProductType) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </section>
-  )
+  const showcaseContent = showcaseProducts
+    .slice(0, 3)
+    .map((product: ProductType) => (
+      <ProductCard key={product.id} product={product} />
+    ))
+
+  return <section className={productsContainerClass}>{showcaseContent}</section>
 }
 
 export default function Showcase() {
