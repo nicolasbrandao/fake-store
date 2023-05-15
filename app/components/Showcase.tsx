@@ -14,7 +14,8 @@ function ShowcaseContent() {
     'lg:grid-cols-3',
     'lg:grid-rows-2',
     'min-h-[300px]',
-    'min-w-screen'
+    'min-w-screen',
+    isLoading && 'flex items-center justify-center'
   )
 
   const showcaseContent = showcaseProducts
