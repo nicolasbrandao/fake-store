@@ -1,7 +1,7 @@
 'use client'
 
 import classNames from 'classnames'
-import ProductDetails from './components/ProductDetails'
+import ProductDetails from '../components/ProductDetails'
 import { SingleProductProvider } from '../context/singleProduct'
 
 type PropsType = {
