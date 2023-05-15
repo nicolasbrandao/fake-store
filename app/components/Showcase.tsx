@@ -10,12 +10,11 @@ function ShowcaseContent() {
   const { showcaseProducts, isLoading } = useShowcaseProducts()
 
   const productsContainerClass = classNames(
-    'lg:grid',
     'lg:grid-cols-3',
     'lg:grid-rows-2',
     'min-h-[300px]',
     'min-w-screen',
-    isLoading && 'flex items-center justify-center'
+    isLoading ? 'flex items-center justify-center' : 'lg:grid'
   )
 
   const showcaseContent = showcaseProducts
