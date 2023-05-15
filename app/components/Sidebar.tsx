@@ -3,9 +3,10 @@
 import Link from 'next/link'
 import classNames from 'classnames'
 import { useCategories, CategoriesProvider } from '@/app/context/categories'
+import { SkeletonText } from '@chakra-ui/react'
 
 function SidebarContent() {
-  const { categories } = useCategories()
+  const { categories, isLoading } = useCategories()
 
   const categoriesListClass = classNames(
     'p-4',
@@ -23,11 +24,13 @@ function SidebarContent() {
       <li>
         <Link href="/filter">all</Link>
       </li>
-      {categories.map((category: string) => (
-        <li key={category}>
-          <Link href={`/filter/${category}`}>{category}</Link>
-        </li>
-      ))}
+      <SkeletonText isLoaded={!isLoading}>
+        {categories.map((category: string) => (
+          <li key={category}>
+            <Link href={`/filter/${category}`}>{category}</Link>
+          </li>
+        ))}
+      </SkeletonText>
     </ul>
   )
 }

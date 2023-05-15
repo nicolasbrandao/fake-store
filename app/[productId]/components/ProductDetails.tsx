@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import classNames from 'classnames'
-import { Button } from '@chakra-ui/react'
+import { Button, Skeleton, SkeletonText } from '@chakra-ui/react'
 import { AiOutlineStar } from 'react-icons/ai'
 import { FaRegCommentDots } from 'react-icons/fa'
 import Carousel from '@/app/components/Carousel'
@@ -16,7 +16,7 @@ const formatter = new Intl.NumberFormat('en-US', {
 })
 
 export default function ProductDetails() {
-  const { singleProduct } = useSingleProduct()
+  const { singleProduct, isLoading } = useSingleProduct()
 
   const { dispatch } = useCart()
 
@@ -76,51 +76,67 @@ export default function ProductDetails() {
     <div className={mainContainerClass}>
       <div className={productContainerClass}>
         <div className={imageWrapperClass}>
-          <Image
-            src={singleProduct.image}
-            alt={singleProduct.title}
-            width={500}
-            height={500}
-            style={{ width: 500, height: 'auto' }}
-            priority
-          />
+          <Skeleton isLoaded={!isLoading}>
+            <Image
+              src={singleProduct.image}
+              alt={singleProduct.title}
+              width={500}
+              height={500}
+              style={{ width: 500, height: 'auto' }}
+              priority
+            />
+          </Skeleton>
         </div>
         <div className={productInfoClass}>
           <div className={headerContainerClass}>
-            <h2 className={titleClass}>{singleProduct.title}</h2>
-            <div className={subtitleContainerClass}>
-              <Link href={`/filter/${singleProduct.category}`}>
-                <p className={categoryClass}>{singleProduct.category}</p>
-              </Link>
-              <div className={ratingsContainerClass}>
-                <AiOutlineStar />
-                <p>{singleProduct.rating.rate}</p>
-                <FaRegCommentDots />
-                <p>{singleProduct.rating.count}</p>
+            <Skeleton isLoaded={!isLoading}>
+              <h2 className={titleClass}>{singleProduct.title}</h2>
+            </Skeleton>
+            <Skeleton isLoaded={!isLoading}>
+              <div className={subtitleContainerClass}>
+                <Link href={`/filter/${singleProduct.category}`}>
+                  <p className={categoryClass}>{singleProduct.category}</p>
+                </Link>
+                <div className={ratingsContainerClass}>
+                  <AiOutlineStar />
+                  <p>{singleProduct.rating.rate}</p>
+                  <FaRegCommentDots />
+                  <p>{singleProduct.rating.count}</p>
+                </div>
               </div>
-            </div>
+            </Skeleton>
           </div>
-          <p className={priceClass}>{formatter.format(singleProduct.price)}</p>
-          <p>{singleProduct.description}</p>
-          <Button
-            size="md"
-            height="48px"
-            width="200px"
-            border="2px"
-            borderColor="white"
-            _hover={{
-              bg: 'lightgray',
-              textColor: 'black',
-              borderColor: 'lightgray',
-            }}
-            onClick={() => handleAddProductToCart(singleProduct)}
-          >
-            ADD TO CART
-          </Button>
+          <Skeleton isLoaded={!isLoading}>
+            <p className={priceClass}>
+              {formatter.format(singleProduct.price)}
+            </p>
+          </Skeleton>
+          <SkeletonText isLoaded={!isLoading}>
+            <p>{singleProduct.description}</p>
+          </SkeletonText>
+          <Skeleton isLoaded={!isLoading}>
+            <Button
+              size="md"
+              height="48px"
+              width="200px"
+              border="2px"
+              borderColor="white"
+              _hover={{
+                bg: 'lightgray',
+                textColor: 'black',
+                borderColor: 'lightgray',
+              }}
+              onClick={() => handleAddProductToCart(singleProduct)}
+            >
+              ADD TO CART
+            </Button>
+          </Skeleton>
         </div>
       </div>
       <div>
-        <h2 className={relatedProductsTitleClass}>Related Products</h2>
+        <Skeleton isLoaded={!isLoading}>
+          <h2 className={relatedProductsTitleClass}>Related Products</h2>
+        </Skeleton>
         <Carousel />
       </div>
     </div>

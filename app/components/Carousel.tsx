@@ -5,24 +5,27 @@ import { ProductType } from '@/types'
 import { v4 as uuidv4 } from 'uuid'
 import CarouselCard from './CarouselCard'
 import { CorouselProvider, useCarouselProducts } from '../context/carousel'
+import LoadingSpinner from './common/LoadingSpinner'
 
 function CarouselContent() {
-  const { carouselProducts } = useCarouselProducts()
+  const { carouselProducts, isLoading } = useCarouselProducts()
   const caroulselContainerClass = classNames(
     'relative',
     'w-full',
     'overflow-hidden',
-    'bg-[white]'
+    isLoading ? 'flex p-4 items-center justify-center bg-[black]' : 'bg-[white]'
   )
 
   const carouselClass = classNames('flex', 'animate-carousel')
 
+  const carouselContent = carouselProducts.map((product: ProductType) => (
+    <CarouselCard key={uuidv4()} product={product} />
+  ))
+
   return (
     <section className={caroulselContainerClass}>
       <div className={carouselClass}>
-        {carouselProducts.map((product: ProductType) => (
-          <CarouselCard key={uuidv4()} product={product} />
-        ))}
+        {isLoading ? <LoadingSpinner /> : carouselContent}
       </div>
     </section>
   )

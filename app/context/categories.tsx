@@ -18,10 +18,12 @@ export const fetchCategoriesAction = 'FETCH_CATEGORIES'
 
 type StateType = {
   categories: string[]
+  isLoading: boolean
 }
 
 const initialState: StateType = {
   categories: [],
+  isLoading: true,
 }
 
 export const reducer = (
@@ -33,6 +35,7 @@ export const reducer = (
       return {
         ...state,
         categories: action.payload,
+        isLoading: false,
       }
     default:
       return state

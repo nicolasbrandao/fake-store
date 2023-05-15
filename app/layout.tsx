@@ -25,11 +25,13 @@ export default function RootLayout({
     'bg-background',
     'text-foreground',
     'overflow-x-hidden',
+    'min-w-full',
     montserrat.className
   )
 
   const mainContainerClas = classNames(
     'min-h-screen',
+    'min-w-full',
     'flex',
     'flex-col',
     'pt-[6rem]',

@@ -16,10 +16,12 @@ export const fetchShowcaselProductsAction = 'FETCH_SHOWCASE_PRODUCTS'
 
 type StateType = {
   showcaseProducts: ProductType[]
+  isLoading: boolean
 }
 
 const initialState: StateType = {
   showcaseProducts: [],
+  isLoading: true,
 }
 
 const reducer = (state: StateType, action: ActionType<ProductsPayloadType>) => {
@@ -28,6 +30,7 @@ const reducer = (state: StateType, action: ActionType<ProductsPayloadType>) => {
       return {
         ...state,
         showcaseProducts: action.payload,
+        isLoading: false,
       }
     default:
       return state

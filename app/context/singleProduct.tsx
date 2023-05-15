@@ -18,6 +18,7 @@ export const fetchSingleProductAction = 'FETCH_SINGLE_PRODUCT'
 
 type StateType = {
   singleProduct: ProductType
+  isLoading: boolean
 }
 
 const initialState: StateType = {
@@ -33,6 +34,7 @@ const initialState: StateType = {
       count: 0,
     },
   },
+  isLoading: true,
 }
 
 const reducer = (
@@ -44,6 +46,7 @@ const reducer = (
       return {
         ...state,
         singleProduct: action.payload,
+        isLoading: false,
       }
     default:
       return state

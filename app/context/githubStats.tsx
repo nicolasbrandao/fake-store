@@ -19,6 +19,7 @@ const fetchGithubStatsAction = 'FETCH_GITHUB_STATS'
 const initialState = {
   stars: 0,
   forks: 0,
+  isLoading: true,
 }
 
 type StateType = typeof initialState
@@ -33,6 +34,7 @@ export const reducer = (
         ...state,
         stars: action.payload.stargazers_count,
         forks: action.payload.forks_count,
+        isLoading: false,
       }
     default:
       return state

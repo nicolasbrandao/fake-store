@@ -4,7 +4,7 @@ import {
   ProductsByCategoryProvider,
   useProductsByCategory,
 } from '@/app/context/productsByCategory'
-import ProductsList from '../components/ProductsList'
+import ProductsList from '../../components/ProductsList'
 
 type PropsType = {
   params: {
@@ -13,9 +13,9 @@ type PropsType = {
 }
 
 function CategoryFilterContent() {
-  const { productsByCategory } = useProductsByCategory()
+  const { productsByCategory, isLoading } = useProductsByCategory()
 
-  return <ProductsList products={productsByCategory} />
+  return <ProductsList products={productsByCategory} isLoading={isLoading} />
 }
 
 export default function CategoryFilter({ params: { category } }: PropsType) {

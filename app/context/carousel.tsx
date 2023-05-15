@@ -16,10 +16,12 @@ export const fetchCarouselProductsAction = 'FETCH_CAROUSEL_PRODUCTS'
 
 type StateType = {
   carouselProducts: ProductType[]
+  isLoading: boolean
 }
 
 const initialState: StateType = {
   carouselProducts: [],
+  isLoading: true,
 }
 
 const reducer = (state: StateType, action: ActionType<ProductsPayloadType>) => {
@@ -28,6 +30,7 @@ const reducer = (state: StateType, action: ActionType<ProductsPayloadType>) => {
       return {
         ...state,
         carouselProducts: action.payload,
+        isLoading: false,
       }
     default:
       return state

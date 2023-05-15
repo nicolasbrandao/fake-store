@@ -4,11 +4,12 @@ import classNames from 'classnames'
 import { AiOutlineStar } from 'react-icons/ai'
 import { BiGitRepoForked } from 'react-icons/bi'
 import { FiShoppingBag } from 'react-icons/fi'
+import { Skeleton } from '@chakra-ui/react'
 import Brand from './common/Brand'
 import { GithubStatsProvider, useGithubStats } from '../context/githubStats'
 
 function FooterContent() {
-  const { stars, forks } = useGithubStats()
+  const { stars, forks, isLoading } = useGithubStats()
 
   const footerClass = classNames(
     'flex',
@@ -77,16 +78,18 @@ function FooterContent() {
         rel="noreferrer"
       >
         <p>Designed & Built by Nícolas Brandão</p>
-        <div className={statsWrapperClass}>
-          <div className={statsContainerClass}>
-            <AiOutlineStar />
-            <span>{stars}</span>
+        <Skeleton isLoaded={!isLoading}>
+          <div className={statsWrapperClass}>
+            <div className={statsContainerClass}>
+              <AiOutlineStar />
+              <span>{stars}</span>
+            </div>
+            <div className={statsContainerClass}>
+              <BiGitRepoForked />
+              <span>{forks}</span>
+            </div>
           </div>
-          <div className={statsContainerClass}>
-            <BiGitRepoForked />
-            <span>{forks}</span>
-          </div>
-        </div>
+        </Skeleton>
       </a>
     </footer>
   )

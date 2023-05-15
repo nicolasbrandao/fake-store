@@ -4,14 +4,17 @@ import { ProductType } from '@/types'
 import classNames from 'classnames'
 import ProductCard from './common/ProductCard'
 import { ShowcaseProvider, useShowcaseProducts } from '../context/showcase'
+import LoadingSpinner from './common/LoadingSpinner'
 
 function ShowcaseContent() {
-  const { showcaseProducts } = useShowcaseProducts()
+  const { showcaseProducts, isLoading } = useShowcaseProducts()
 
   const productsContainerClass = classNames(
     'lg:grid',
     'lg:grid-cols-3',
-    'lg:grid-rows-2'
+    'lg:grid-rows-2',
+    'min-h-[300px]',
+    'min-w-screen'
   )
 
   const showcaseContent = showcaseProducts
@@ -20,7 +23,11 @@ function ShowcaseContent() {
       <ProductCard key={product.id} product={product} />
     ))
 
-  return <section className={productsContainerClass}>{showcaseContent}</section>
+  return (
+    <section className={productsContainerClass}>
+      {isLoading ? <LoadingSpinner /> : showcaseContent}
+    </section>
+  )
 }
 
 export default function Showcase() {

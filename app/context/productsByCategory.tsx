@@ -18,10 +18,12 @@ export const fetchProductsByCategoryAction = 'FETCH_PRODUCTS_BY_CATEGORY'
 
 type StateType = {
   productsByCategory: ProductType[]
+  isLoading: boolean
 }
 
 const initialState: StateType = {
   productsByCategory: [],
+  isLoading: true,
 }
 
 const reducer = (state: StateType, action: ActionType<ProductsPayloadType>) => {
@@ -30,6 +32,7 @@ const reducer = (state: StateType, action: ActionType<ProductsPayloadType>) => {
       return {
         ...state,
         productsByCategory: action.payload,
+        isLoading: false,
       }
     default:
       return state
@@ -70,7 +73,7 @@ export function ProductsByCategoryProvider({
 
   useEffect(() => {
     actions.fetchProductsByCategory()
-  })
+  }, [actions])
   return (
     <ProductsByCategoryContext.Provider value={productsByCategory}>
       {children}
