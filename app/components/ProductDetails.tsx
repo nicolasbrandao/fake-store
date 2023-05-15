@@ -27,7 +27,7 @@ export default function ProductDetails() {
     })
   }
 
-  const mainContainerClass = classNames('flex', 'flex-col', 'gap-4')
+  const mainContainerClass = classNames('flex', 'flex-col', 'gap-4', 'w-screen')
 
   const productContainerClass = classNames('flex', 'flex-col', 'md:flex-row')
 
