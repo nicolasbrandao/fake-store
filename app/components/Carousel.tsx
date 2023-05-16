@@ -4,11 +4,12 @@ import classNames from 'classnames'
 import { ProductType } from '@/types'
 import { v4 as uuidv4 } from 'uuid'
 import CarouselCard from './CarouselCard'
-import { CorouselProvider, useCarouselProducts } from '../context/carousel'
+import { CarouselProvider, useCarouselProducts } from '../context/carousel'
 import LoadingSpinner from './common/LoadingSpinner'
 
 function CarouselContent() {
   const { carouselProducts, isLoading } = useCarouselProducts()
+
   const caroulselContainerClass = classNames(
     'relative',
     'w-full',
@@ -28,18 +29,18 @@ function CarouselContent() {
   ))
 
   return (
-    <section className={caroulselContainerClass}>
+    <div className={caroulselContainerClass}>
       <div className={carouselClass}>
         {isLoading ? <LoadingSpinner /> : carouselContent}
       </div>
-    </section>
+    </div>
   )
 }
 
 export default function Carousel() {
   return (
-    <CorouselProvider>
+    <CarouselProvider>
       <CarouselContent />
-    </CorouselProvider>
+    </CarouselProvider>
   )
 }

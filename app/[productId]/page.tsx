@@ -12,6 +12,7 @@ type PropsType = {
 
 function ProductContent() {
   const filterContainerClass = classNames('flex')
+
   return (
     <main className={filterContainerClass}>
       <ProductDetails />

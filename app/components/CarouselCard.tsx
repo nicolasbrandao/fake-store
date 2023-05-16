@@ -48,19 +48,21 @@ export default function CarouselCard({ product }: PropsType) {
       : title
 
   return (
-    <Link href={`/${id}`} className={cardContainerClass}>
-      <div className={imageContainerClass}>
-        <Image
-          src={product.image}
-          height={200}
-          width={200}
-          alt={title}
-          style={{ objectFit: 'contain' }}
-        />
-      </div>
-      <div className={titleContainerClass}>
-        <div className={titleClass}>{truncatedTitle}</div>
-      </div>
-    </Link>
+    <article className={cardContainerClass}>
+      <Link href={`/${id}`}>
+        <figure className={imageContainerClass}>
+          <Image
+            src={product.image}
+            height={200}
+            width={200}
+            alt={title}
+            style={{ objectFit: 'contain' }}
+          />
+        </figure>
+        <div className={titleContainerClass}>
+          <span className={titleClass}>{truncatedTitle}</span>
+        </div>
+      </Link>
+    </article>
   )
 }

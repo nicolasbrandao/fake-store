@@ -111,34 +111,39 @@ function CartProductCard({ product }: CartProductPropsType) {
       : title
 
   return (
-    <div className={mainContainerClass}>
+    <article className={mainContainerClass}>
       <Link href={`/${id}`}>
-        <div className={headerContainerClass}>
-          <div className={imageContainerClass}>
+        <header className={headerContainerClass}>
+          <figure className={imageContainerClass}>
             <Image src={image} alt={title} height={50} width={50} />
-          </div>
-          <p className={titleClass}>{truncatedTitle}</p>
-          <p className={priceClass}>{formatter.format(price * quantity)}</p>
-        </div>
+          </figure>
+          <h3 className={titleClass}>{truncatedTitle}</h3>
+          <span className={priceClass}>
+            {formatter.format(price * quantity)}
+          </span>
+        </header>
       </Link>
       <div className={footerContainerClass}>
         <AiOutlineClose
           className={buttonsClass}
           onClick={() => handleClearProductInCart(id)}
+          tabIndex={0}
         />
         <div className={quantityContainerClass}>
           <p className={quantityNumberClass}>{quantity}</p>
           <AiOutlineMinus
             className={buttonsClass}
             onClick={() => handleRemoveProductFromCart(id)}
+            tabIndex={0}
           />
           <AiOutlinePlus
             className={buttonsClass}
             onClick={() => handleAddProductToCart(product)}
+            tabIndex={0}
           />
         </div>
       </div>
-    </div>
+    </article>
   )
 }
 
@@ -202,7 +207,7 @@ export default function Cart() {
   return (
     <>
       <div className={cartIconContainerClass}>
-        <FiShoppingBag onClick={() => handleClick()} />
+        <FiShoppingBag onClick={() => handleClick()} tabIndex={0} />
         <p className={cartLengthContainerClass}>{cartProducts.length}</p>
       </div>
 
@@ -217,7 +222,7 @@ export default function Cart() {
             ))}
           </DrawerBody>
           <DrawerFooter className={drawerFooterClass}>
-            <div className={footerTableClass}>
+            <footer className={footerTableClass}>
               <div className={tableRowClass}>
                 <p>Subtotal</p>
                 <p>{formatter.format(totalPrice)}</p>
@@ -234,7 +239,7 @@ export default function Cart() {
                 <p>Total</p>
                 <p>{formatter.format(totalPrice)}</p>
               </div>
-            </div>
+            </footer>
             <Button
               size="md"
               height="48px"
@@ -247,6 +252,7 @@ export default function Cart() {
                 textColor: 'white',
                 borderColor: 'black',
               }}
+              tabIndex={0}
             >
               PROCEED TO CHECKOUT
             </Button>

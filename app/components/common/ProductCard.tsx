@@ -59,16 +59,23 @@ export default function ProductCard({ product }: PropsType) {
       : title
 
   return (
-    <Link href={`/${id}`} className={productContainerClass}>
-      <div className={infoContainerClass}>
-        <h3>
-          <span className={titleClass}>{truncatedTitle}</span>
-        </h3>
-        <div className={priceClass}>{formatter.format(price)}</div>
-      </div>
-      <div className={imageContainerClass}>
-        <Image src={image} fill alt={title} style={{ objectFit: 'contain' }} />
-      </div>
-    </Link>
+    <article className={productContainerClass}>
+      <Link href={`/${id}`}>
+        <header className={infoContainerClass}>
+          <h2>
+            <span className={titleClass}>{truncatedTitle}</span>
+          </h2>
+          <span className={priceClass}>{formatter.format(price)}</span>
+        </header>
+        <figure className={imageContainerClass}>
+          <Image
+            src={image}
+            fill
+            alt={title}
+            style={{ objectFit: 'contain' }}
+          />
+        </figure>
+      </Link>
+    </article>
   )
 }

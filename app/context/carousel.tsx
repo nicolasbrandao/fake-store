@@ -55,7 +55,7 @@ function makeActions(
   }
 }
 
-export function CorouselProvider({ children }: PropsWithChildren) {
+export function CarouselProvider({ children }: PropsWithChildren) {
   const [carouselProducts, dispatch] = useReducer(reducer, initialState)
 
   const actions = useMemo(() => makeActions(dispatch), [dispatch])

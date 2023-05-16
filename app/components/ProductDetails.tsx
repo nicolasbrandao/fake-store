@@ -75,8 +75,8 @@ export default function ProductDetails() {
 
   return (
     <div className={mainContainerClass}>
-      <div className={productContainerClass}>
-        <div className={imageWrapperClass}>
+      <article className={productContainerClass}>
+        <figure className={imageWrapperClass}>
           <Skeleton isLoaded={!isLoading}>
             <Image
               src={singleProduct.image}
@@ -86,9 +86,9 @@ export default function ProductDetails() {
               priority
             />
           </Skeleton>
-        </div>
+        </figure>
         <div className={productInfoClass}>
-          <div className={headerContainerClass}>
+          <header className={headerContainerClass}>
             <Skeleton isLoaded={!isLoading}>
               <h2 className={titleClass}>{singleProduct.title}</h2>
             </Skeleton>
@@ -105,7 +105,7 @@ export default function ProductDetails() {
                 </div>
               </div>
             </Skeleton>
-          </div>
+          </header>
           <Skeleton isLoaded={!isLoading}>
             <p className={priceClass}>
               {formatter.format(singleProduct.price)}
@@ -132,7 +132,7 @@ export default function ProductDetails() {
             </Button>
           </Skeleton>
         </div>
-      </div>
+      </article>
       <div>
         <Skeleton isLoaded={!isLoading}>
           <h2 className={relatedProductsTitleClass}>Related Products</h2>
