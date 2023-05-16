@@ -16,7 +16,12 @@ function CarouselContent() {
     isLoading ? 'flex p-4 items-center justify-center bg-[black]' : 'bg-[white]'
   )
 
-  const carouselClass = classNames('flex', 'animate-carousel')
+  const carouselClass = classNames(
+    'flex',
+    'items-center',
+    'justify-center',
+    'animate-carousel'
+  )
 
   const carouselContent = carouselProducts.map((product: ProductType) => (
     <CarouselCard key={uuidv4()} product={product} />

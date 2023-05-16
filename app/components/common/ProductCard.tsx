@@ -22,7 +22,7 @@ export default function ProductCard({ product }: PropsType) {
     'relative'
   )
 
-  const infoContainerClass = classNames('absolute')
+  const infoContainerClass = classNames('absolute', 'z-10')
 
   const titleClass = classNames(
     'bg-background',
@@ -48,10 +48,9 @@ export default function ProductCard({ product }: PropsType) {
     'items-center',
     'justify-center',
     'object-cover',
-    'bg-[white]'
+    'bg-[white]',
+    'relative'
   )
-
-  const imageClass = classNames('flex', 'h-full', 'object-contain')
 
   const MAX_TITLE_LENGTH = 15
   const truncatedTitle =
@@ -68,13 +67,7 @@ export default function ProductCard({ product }: PropsType) {
         <div className={priceClass}>{formatter.format(price)}</div>
       </div>
       <div className={imageContainerClass}>
-        <Image
-          src={image}
-          width={500}
-          height={500}
-          alt={title}
-          className={imageClass}
-        />
+        <Image src={image} fill alt={title} style={{ objectFit: 'contain' }} />
       </div>
     </Link>
   )

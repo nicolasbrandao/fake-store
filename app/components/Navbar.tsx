@@ -13,7 +13,7 @@ export default function Navbar() {
     'fixed',
     'top-0',
     'w-full',
-    'z-10',
+    'z-20',
     'bg-background'
   )
 

@@ -39,7 +39,8 @@ export default function ProductDetails() {
     'items-center',
     'justify-center',
     'object-cover',
-    'bg-[white]'
+    'bg-[white]',
+    'relative'
   )
 
   const productInfoClass = classNames(
@@ -80,9 +81,8 @@ export default function ProductDetails() {
             <Image
               src={singleProduct.image}
               alt={singleProduct.title}
-              width={500}
-              height={500}
-              style={{ width: 500, height: 'auto' }}
+              fill
+              style={{ objectFit: 'contain' }}
               priority
             />
           </Skeleton>
