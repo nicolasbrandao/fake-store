@@ -68,7 +68,7 @@ export default function ProductDetails() {
 
   const ratingsContainerClass = classNames('flex', 'gap-2', 'items-center')
 
-  const priceClass = classNames('font-bold', 'text-2xl')
+  const priceClass = classNames('font-bold', 'text-6xl')
 
   const relatedProductsTitleClass = classNames('text-2xl', 'font-bold')
 
