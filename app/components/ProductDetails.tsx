@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { KeyboardEvent } from 'react'
 import classNames from 'classnames'
 import { Button, Skeleton, SkeletonText } from '@chakra-ui/react'
 import { AiOutlineStar } from 'react-icons/ai'
@@ -25,6 +25,13 @@ export default function ProductDetails() {
       type: actionTypes.addProductToCart,
       payload: product,
     })
+  }
+
+  const handleKeyDown = (event: KeyboardEvent, productObj: ProductType) => {
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      handleAddProductToCart(productObj)
+    }
   }
 
   const mainContainerClass = classNames('flex', 'flex-col', 'gap-4', 'w-screen')
@@ -127,6 +134,7 @@ export default function ProductDetails() {
                 borderColor: 'lightgray',
               }}
               onClick={() => handleAddProductToCart(singleProduct)}
+              onKeyDown={(event) => handleKeyDown(event, singleProduct)}
             >
               ADD TO CART
             </Button>

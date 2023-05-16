@@ -15,6 +15,7 @@ import {
 import { ProductType } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
+import { KeyboardEvent } from 'react'
 import { actionTypes, useCart } from '../context/cart'
 
 const formatter = new Intl.NumberFormat('en-US', {
@@ -24,6 +25,17 @@ const formatter = new Intl.NumberFormat('en-US', {
 
 type CartProductPropsType = {
   product: ProductType
+}
+
+const actions = {
+  clear: 'CLEAR',
+  remove: 'REMOVE',
+  add: 'ADD',
+}
+
+type ActionType<T> = {
+  type: string
+  payload: T
 }
 
 function CartProductCard({ product }: CartProductPropsType) {
@@ -53,6 +65,27 @@ function CartProductCard({ product }: CartProductPropsType) {
       type: actionTypes.addProductToCart,
       payload: productObj,
     })
+  }
+
+  const handleKeyDown = (
+    event: KeyboardEvent,
+    action: ActionType<ProductType | number>
+  ) => {
+    if (event.key === 'Enter') {
+      switch (action.type) {
+        case actions.clear:
+          handleClearProductInCart(action.payload as number)
+          break
+        case actions.remove:
+          handleRemoveProductFromCart(action.payload as number)
+          break
+        case actions.add:
+          handleAddProductToCart(action.payload as ProductType)
+          break
+        default:
+          break
+      }
+    }
   }
 
   const mainContainerClass = classNames(
@@ -127,6 +160,9 @@ function CartProductCard({ product }: CartProductPropsType) {
         <AiOutlineClose
           className={buttonsClass}
           onClick={() => handleClearProductInCart(id)}
+          onKeyDown={(event) =>
+            handleKeyDown(event, { type: actions.clear, payload: id })
+          }
           tabIndex={0}
         />
         <div className={quantityContainerClass}>
@@ -134,11 +170,17 @@ function CartProductCard({ product }: CartProductPropsType) {
           <AiOutlineMinus
             className={buttonsClass}
             onClick={() => handleRemoveProductFromCart(id)}
+            onKeyDown={(event) =>
+              handleKeyDown(event, { type: actions.remove, payload: id })
+            }
             tabIndex={0}
           />
           <AiOutlinePlus
             className={buttonsClass}
             onClick={() => handleAddProductToCart(product)}
+            onKeyDown={(event) =>
+              handleKeyDown(event, { type: actions.add, payload: product })
+            }
             tabIndex={0}
           />
         </div>
@@ -162,6 +204,13 @@ export default function Cart() {
 
   const handleClick = () => {
     onOpen()
+  }
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      onOpen()
+    }
   }
 
   const cartIconContainerClass = classNames('flex', 'relative')
@@ -207,7 +256,11 @@ export default function Cart() {
   return (
     <>
       <div className={cartIconContainerClass}>
-        <FiShoppingBag onClick={() => handleClick()} tabIndex={0} />
+        <FiShoppingBag
+          onClick={() => handleClick()}
+          tabIndex={0}
+          onKeyDown={(event) => handleKeyDown(event)}
+        />
         <p className={cartLengthContainerClass}>{cartProducts.length}</p>
       </div>
 
