@@ -12,13 +12,11 @@ type PropsType = {
 
 export default function ProductsList({ products, isLoading }: PropsType) {
   const productsContainerClass = classNames(
-    'grid',
-    'grid-cols-1',
     'lg:grid-cols-3',
+    'lg:grid-rows-2',
     'gap-4',
-    'mx-auto',
-    'my-auto',
-    isLoading ? 'flex items-center justify-center' : ''
+    'w-full',
+    isLoading ? 'flex items-center justify-center' : 'lg:grid'
   )
 
   const productsList = products.map((product: ProductType) => (
