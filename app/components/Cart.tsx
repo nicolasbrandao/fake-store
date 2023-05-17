@@ -17,6 +17,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { KeyboardEvent } from 'react'
 import { actionTypes, useCart } from '../context/cart'
+import makeImageSizes from '../lib/utils/makeImageSizes'
 
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -108,6 +109,14 @@ function CartProductCard({ product }: CartProductPropsType) {
     'bg-[white]'
   )
 
+  const imageClass = classNames('w-auto', 'object-contain')
+
+  const imageSizes = {
+    small: '20vw',
+    medium: '20vw',
+    large: '20vw',
+  }
+
   const titleClass = classNames('font-bold')
 
   const priceClass = classNames(
@@ -148,7 +157,14 @@ function CartProductCard({ product }: CartProductPropsType) {
       <Link href={`/${id}`}>
         <header className={headerContainerClass}>
           <figure className={imageContainerClass}>
-            <Image src={image} alt={title} height={50} width={50} />
+            <Image
+              src={image}
+              alt={title}
+              height={50}
+              width={50}
+              className={imageClass}
+              sizes={makeImageSizes(imageSizes)}
+            />
           </figure>
           <h3 className={titleClass}>{truncatedTitle}</h3>
           <span className={priceClass}>
