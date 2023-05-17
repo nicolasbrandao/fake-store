@@ -22,14 +22,17 @@ export default function ProductCard({ product }: PropsType) {
     'relative'
   )
 
-  const infoContainerClass = classNames('absolute', 'z-10')
+  const infoContainerClass = classNames('absolute', 'top-2', 'z-10')
 
   const titleClass = classNames(
     'bg-background',
     'w-fit',
     'text-4xl',
     'font-bold',
-    'p-2'
+    'p-2',
+    'leading-10',
+    'relative',
+    'top-0'
   )
 
   const priceClass = classNames(
@@ -37,7 +40,8 @@ export default function ProductCard({ product }: PropsType) {
     'w-fit',
     'text-2xl',
     'font-bold',
-    'p-2'
+    'p-2',
+    'leading-[60px]'
   )
 
   const imageContainerClass = classNames(
