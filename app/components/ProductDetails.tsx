@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { ProductType } from '@/types'
 import { actionTypes, useCart } from '@/app/context/cart'
 import { useSingleProduct } from '@/app/context/singleProduct'
+import makeImageSizes from '../lib/utils/makeImageSizes'
 
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -50,6 +51,14 @@ export default function ProductDetails() {
     'relative'
   )
 
+  const imageClass = classNames('w-auto', 'object-contain')
+
+  const imageSizes = {
+    small: '100vw',
+    medium: '60vw',
+    large: '60vw',
+  }
+
   const productInfoClass = classNames(
     'flex',
     'flex-col',
@@ -86,10 +95,11 @@ export default function ProductDetails() {
         <figure className={imageWrapperClass}>
           <Skeleton isLoaded={!isLoading}>
             <Image
+              className={imageClass}
               src={singleProduct.image}
               alt={singleProduct.title}
               fill
-              style={{ objectFit: 'contain' }}
+              sizes={makeImageSizes(imageSizes)}
               priority
             />
           </Skeleton>
