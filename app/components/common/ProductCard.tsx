@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import Image from 'next/image'
 import React from 'react'
 import Link from 'next/link'
+import makeImageSizes from '@/app/lib/utils/makeImageSizes'
 
 type PropsType = {
   product: ProductType
@@ -56,6 +57,14 @@ export default function ProductCard({ product }: PropsType) {
     'relative'
   )
 
+  const imageClass = classNames('w-auto', 'object-contain')
+
+  const imageSizes = {
+    small: '100vw',
+    medium: '50vw',
+    large: '100vw',
+  }
+
   const MAX_TITLE_LENGTH = 15
   const truncatedTitle =
     title.length > MAX_TITLE_LENGTH
@@ -73,10 +82,12 @@ export default function ProductCard({ product }: PropsType) {
         </header>
         <figure className={imageContainerClass}>
           <Image
+            className={imageClass}
             src={image}
             fill
             alt={title}
-            style={{ objectFit: 'contain' }}
+            priority
+            sizes={makeImageSizes(imageSizes)}
           />
         </figure>
       </Link>

@@ -3,6 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import classNames from 'classnames'
 import Link from 'next/link'
+import makeImageSizes from '../lib/utils/makeImageSizes'
 
 type PropsType = {
   product: ProductType
@@ -41,6 +42,14 @@ export default function CarouselCard({ product }: PropsType) {
 
   const imageContainerClass = classNames('bg-[white]')
 
+  const imageClass = classNames('w-auto', 'object-contain')
+
+  const imageSizes = {
+    small: '30vw',
+    medium: '35vw',
+    large: '20vw',
+  }
+
   const MAX_TITLE_LENGTH = 15
   const truncatedTitle =
     title.length > MAX_TITLE_LENGTH
@@ -52,11 +61,13 @@ export default function CarouselCard({ product }: PropsType) {
       <Link href={`/${id}`}>
         <figure className={imageContainerClass}>
           <Image
+            className={imageClass}
             src={product.image}
             height={200}
             width={200}
             alt={title}
-            style={{ objectFit: 'contain' }}
+            priority
+            sizes={makeImageSizes(imageSizes)}
           />
         </figure>
         <div className={titleContainerClass}>
