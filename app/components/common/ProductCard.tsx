@@ -5,15 +5,11 @@ import React from 'react'
 import Link from 'next/link'
 import makeImageSizes from '@/app/lib/utils/makeImageSizes'
 import makeTruncatedString from '@/app/lib/utils/makeTruncatedString'
+import formatter from '@/app/lib/utils/currencyFormatter'
 
 type PropsType = {
   product: ProductType
 }
-
-const formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-})
 
 export default function ProductCard({ product }: PropsType) {
   const { title, price, image, id } = product

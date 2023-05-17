@@ -10,11 +10,7 @@ import { ProductType } from '@/types'
 import { actionTypes, useCart } from '@/app/context/cart'
 import { useSingleProduct } from '@/app/context/singleProduct'
 import makeImageSizes from '../lib/utils/makeImageSizes'
-
-const formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-})
+import formatter from '../lib/utils/currencyFormatter'
 
 export default function ProductDetails() {
   const { singleProduct, isLoading } = useSingleProduct()

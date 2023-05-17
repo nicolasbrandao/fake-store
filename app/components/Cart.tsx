@@ -19,11 +19,7 @@ import { KeyboardEvent } from 'react'
 import { actionTypes, useCart } from '../context/cart'
 import makeImageSizes from '../lib/utils/makeImageSizes'
 import makeTruncatedString from '../lib/utils/makeTruncatedString'
-
-const formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-})
+import formatter from '../lib/utils/currencyFormatter'
 
 type CartProductPropsType = {
   product: ProductType
@@ -204,15 +200,6 @@ export default function Cart() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { cartProducts } = useCart()
 
-  const cartUniqueProductsList: ProductType[] = Object.values(
-    cartProducts.reduce((acc: Record<number, ProductType>, obj) => {
-      acc[obj.id] = obj
-      return acc
-    }, {})
-  )
-
-  const totalPrice = cartProducts.reduce((acc, item) => acc + item.price, 0)
-
   const handleClick = () => {
     onOpen()
   }
@@ -223,6 +210,15 @@ export default function Cart() {
       onOpen()
     }
   }
+
+  const cartUniqueProductsList: ProductType[] = Object.values(
+    cartProducts.reduce((acc: Record<number, ProductType>, obj) => {
+      acc[obj.id] = obj
+      return acc
+    }, {})
+  )
+
+  const totalPrice = cartProducts.reduce((acc, item) => acc + item.price, 0)
 
   const cartIconContainerClass = classNames('flex', 'relative')
 
@@ -264,6 +260,12 @@ export default function Cart() {
     'last:font-bold'
   )
 
+  const cartProductsListContent = cartUniqueProductsList.map(
+    (product: ProductType) => (
+      <CartProductCard product={product} key={product.title} />
+    )
+  )
+
   return (
     <>
       <div className={cartIconContainerClass}>
@@ -281,9 +283,7 @@ export default function Cart() {
           <DrawerCloseButton color="black" />
           <DrawerHeader color="black">My Cart</DrawerHeader>
           <DrawerBody className={drawerBodyClass}>
-            {cartUniqueProductsList.map((product: ProductType) => (
-              <CartProductCard product={product} key={product.title} />
-            ))}
+            {cartProductsListContent}
           </DrawerBody>
           <DrawerFooter className={drawerFooterClass}>
             <footer className={footerTableClass}>
