@@ -4,6 +4,7 @@ import Image from 'next/image'
 import React from 'react'
 import Link from 'next/link'
 import makeImageSizes from '@/app/lib/utils/makeImageSizes'
+import makeTruncatedString from '@/app/lib/utils/makeTruncatedString'
 
 type PropsType = {
   product: ProductType
@@ -65,18 +66,12 @@ export default function ProductCard({ product }: PropsType) {
     large: '100vw',
   }
 
-  const MAX_TITLE_LENGTH = 15
-  const truncatedTitle =
-    title.length > MAX_TITLE_LENGTH
-      ? `${title.substring(0, MAX_TITLE_LENGTH)}...`
-      : title
-
   return (
     <article className={productContainerClass}>
       <Link href={`/${id}`}>
         <header className={infoContainerClass}>
           <h2>
-            <span className={titleClass}>{truncatedTitle}</span>
+            <span className={titleClass}>{makeTruncatedString(title, 15)}</span>
           </h2>
           <span className={priceClass}>{formatter.format(price)}</span>
         </header>

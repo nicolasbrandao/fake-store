@@ -18,6 +18,7 @@ import Link from 'next/link'
 import { KeyboardEvent } from 'react'
 import { actionTypes, useCart } from '../context/cart'
 import makeImageSizes from '../lib/utils/makeImageSizes'
+import makeTruncatedString from '../lib/utils/makeTruncatedString'
 
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -146,12 +147,6 @@ function CartProductCard({ product }: CartProductPropsType) {
     'w-[1.5rem]'
   )
 
-  const MAX_TITLE_LENGTH = 15
-  const truncatedTitle =
-    title.length > MAX_TITLE_LENGTH
-      ? `${title.substring(0, MAX_TITLE_LENGTH)}...`
-      : title
-
   return (
     <article className={mainContainerClass}>
       <Link href={`/${id}`}>
@@ -166,7 +161,7 @@ function CartProductCard({ product }: CartProductPropsType) {
               sizes={makeImageSizes(imageSizes)}
             />
           </figure>
-          <h3 className={titleClass}>{truncatedTitle}</h3>
+          <h3 className={titleClass}>{makeTruncatedString(title, 15)}</h3>
           <span className={priceClass}>
             {formatter.format(price * quantity)}
           </span>

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import classNames from 'classnames'
 import Link from 'next/link'
 import makeImageSizes from '../lib/utils/makeImageSizes'
+import makeTruncatedString from '../lib/utils/makeTruncatedString'
 
 type PropsType = {
   product: ProductType
@@ -50,12 +51,6 @@ export default function CarouselCard({ product }: PropsType) {
     large: '20vw',
   }
 
-  const MAX_TITLE_LENGTH = 15
-  const truncatedTitle =
-    title.length > MAX_TITLE_LENGTH
-      ? `${title.substring(0, MAX_TITLE_LENGTH)}...`
-      : title
-
   return (
     <article className={cardContainerClass}>
       <Link href={`/${id}`}>
@@ -71,7 +66,7 @@ export default function CarouselCard({ product }: PropsType) {
           />
         </figure>
         <div className={titleContainerClass}>
-          <span className={titleClass}>{truncatedTitle}</span>
+          <span className={titleClass}>{makeTruncatedString(title, 15)}</span>
         </div>
       </Link>
     </article>
