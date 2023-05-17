@@ -10,6 +10,7 @@ module.exports = {
       colors: {
         background: 'rgb(var(--background) / <alpha-value>)',
         foreground: 'rgb(var(--foreground) / <alpha-value>)',
+        inactive: 'rgb(var(--inactive) / <alpha-value>)',
       },
       keyframes: {
         marquee: {
