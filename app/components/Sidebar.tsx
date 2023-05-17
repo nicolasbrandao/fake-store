@@ -16,18 +16,24 @@ function SidebarContent() {
     'gap-2'
   )
 
+  const listLinkClass = classNames('text-inactive', 'hover:text-foreground')
+
   const listTitleClass = classNames('font-bold', 'text-xl')
 
   return (
     <ul className={categoriesListClass}>
       <li className={listTitleClass}>Categories</li>
       <li>
-        <Link href="/filter">all</Link>
+        <Link href="/filter" className={listLinkClass}>
+          all
+        </Link>
       </li>
       <SkeletonText isLoaded={!isLoading}>
         {categories.map((category: string) => (
           <li key={category}>
-            <Link href={`/filter/${category}`}>{category}</Link>
+            <Link href={`/filter/${category}`} className={listLinkClass}>
+              {category}
+            </Link>
           </li>
         ))}
       </SkeletonText>

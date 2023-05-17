@@ -21,6 +21,8 @@ export default function Navbar() {
 
   const mainLinksContainerClass = classNames('flex', 'gap-4')
 
+  const listItemClass = classNames('text-inactive', 'hover:text-foreground')
+
   const cartProfileContainerClass = classNames('flex', 'gap-6', 'text-2xl')
 
   return (
@@ -28,7 +30,7 @@ export default function Navbar() {
       <div className={navListClass}>
         <Brand />
         <ul className={mainLinksContainerClass}>
-          <li>
+          <li className={listItemClass}>
             <Link href="/filter">Filters</Link>
           </li>
         </ul>
