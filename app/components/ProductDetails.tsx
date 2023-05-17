@@ -93,7 +93,9 @@ export default function ProductDetails() {
     <div className={mainContainerClass}>
       <article className={productContainerClass}>
         <figure className={imageWrapperClass}>
-          <Skeleton isLoaded={!isLoading}>
+          {isLoading ? (
+            <Skeleton height="200px" width="200px" />
+          ) : (
             <Image
               className={imageClass}
               src={singleProduct.image}
@@ -102,7 +104,7 @@ export default function ProductDetails() {
               sizes={makeImageSizes(imageSizes)}
               priority
             />
-          </Skeleton>
+          )}
         </figure>
         <div className={productInfoClass}>
           <header className={headerContainerClass}>
