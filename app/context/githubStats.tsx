@@ -2,7 +2,7 @@
 
 import fetchGithubStats, {
   GithubStatsPayloadType,
-} from '@/app/lib/fetchGithubStats'
+} from '@/app/lib/fetch/fetchGithubStats'
 import { ActionType } from '@/types'
 import {
   Dispatch,

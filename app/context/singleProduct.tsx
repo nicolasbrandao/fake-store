@@ -12,7 +12,7 @@ import React, {
 import { ActionType, ProductType } from '@/types'
 import fetchSingleProduct, {
   SingleProductPayloadType,
-} from '@/app/lib/fetchSingleProduct'
+} from '@/app/lib/fetch/fetchSingleProduct'
 
 export const fetchSingleProductAction = 'FETCH_SINGLE_PRODUCT'
 

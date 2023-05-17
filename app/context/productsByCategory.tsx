@@ -12,7 +12,7 @@ import React, {
 import { ActionType, ProductType } from '@/types'
 import fetchProductsByCategory, {
   ProductsPayloadType,
-} from '@/app/lib/fetchProductsByCategory'
+} from '@/app/lib/fetch/fetchProductsByCategory'
 
 export const fetchProductsByCategoryAction = 'FETCH_PRODUCTS_BY_CATEGORY'
 

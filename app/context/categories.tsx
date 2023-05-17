@@ -2,7 +2,7 @@
 
 import fetchCategories, {
   CategoriesPayloadType,
-} from '@/app/lib/fetchCategories'
+} from '@/app/lib/fetch/fetchCategories'
 import { ActionType } from '@/types'
 import {
   Dispatch,

@@ -10,7 +10,9 @@ import React, {
   useMemo,
 } from 'react'
 import { ActionType, ProductType } from '@/types'
-import fetchProducts, { ProductsPayloadType } from '@/app/lib/fetchProducts'
+import fetchProducts, {
+  ProductsPayloadType,
+} from '@/app/lib/fetch/fetchProducts'
 
 export const fetchShowcaselProductsAction = 'FETCH_SHOWCASE_PRODUCTS'
 
