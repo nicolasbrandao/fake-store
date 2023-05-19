@@ -12,9 +12,8 @@ function ShowcaseContent() {
   const productsContainerClass = classNames(
     'lg:grid-cols-3',
     'lg:grid-rows-2',
-    'min-h-[300px]',
-    'min-w-screen',
-    isLoading ? 'flex items-center justify-center' : 'lg:grid'
+    'min-w-full',
+    isLoading ? 'flex items-center' : 'lg:grid'
   )
 
   const showcaseContent = showcaseProducts
