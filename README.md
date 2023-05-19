@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# 🛍️ FakeStore
 
-First, run the development server:
+<p align="center">
+  <a href="#-description">Description</a>&nbsp;|&nbsp;
+  <a href="#-deploy">Deploy</a>&nbsp;|&nbsp;
+  <a href="#-tech-stack">Tech Stack</a>&nbsp;|&nbsp;
+  <a href="#-environment-variables">Environment Variables</a>&nbsp;|&nbsp;
+  <a href="#-install-and-scripts">Install & Scripts</a>&nbsp;|&nbsp;
+  <a href="#-contribution">Contribution</a>&nbsp;|&nbsp;
+  <a href="#-license">License</a>
+</p>
 
+<br>
+
+<p align="center">
+  <img alt="FakeStore Thumbnail" src="./public/thumbnail/fakestore.png" width="100%" />
+</p>
+
+
+## 📙 Description
+
+FakeStore is an e-commerce web application that allows users to add products to a virtual shopping cart. Upon opening the cart, users can add, remove and clear products in the cart. 
+
+Checkout was not a part of the scope.
+
+This web app utilizes the [Fake Store API](https://fakestoreapi.com/docs).
+
+
+
+## 💻 Deploy
+
+- [Click here](https://next-fakestore.vercel.app/) to go to a Vercel deploy of this app
+## ⚙️ Functionality
+
+- View a specific product details
+- Add, remove and clear products in the cart
+- Filter products by category
+
+## 🛠 Tech Stack
+
+- Next
+    - appDir
+        - App Router
+    - TypeScript
+- Chakra UI
+- Tailwind
+    - Classnames
+- ESLint + Prettier
+    - Airbnb JavaScript Style Guidelines
+
+
+## 🔢 Environment Variables
+
+Theres no need to set environment variables for this project
+
+## 👨‍💻 Install and Scripts
+
+Install dependecies on NPM:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+  npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run local server:
+```bash
+  npm run dev
+```
+Format files with Airbnb JavaScript Style Guidelines:
+```bash
+  npm run format
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create build for deploying:
+```bash
+  npm run build
+```
 
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
+## 👥 Contribution
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+If you'd like to contribute with to project, simply open up a Pull Request.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## 🔑 License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+[MIT](https://choosealicense.com/licenses/mit/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
