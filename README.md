@@ -39,6 +39,7 @@ This web app utilizes the [Fake Store API](https://fakestoreapi.com/docs).
     - appDir
         - App Router
     - TypeScript
+    - Context API
 - Chakra UI
 - Tailwind
     - Classnames
