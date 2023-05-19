@@ -6,6 +6,7 @@
   <a href="#-deploy">Deploy</a>&nbsp;|&nbsp;
   <a href="#-tech-stack">Tech Stack</a>&nbsp;|&nbsp;
   <a href="#-environment-variables">Environment Variables</a>&nbsp;|&nbsp;
+  <a href="#-functionality">Functionality</a>&nbsp;|&nbsp;
   <a href="#-install-and-scripts">Install & Scripts</a>&nbsp;|&nbsp;
   <a href="#-contribution">Contribution</a>&nbsp;|&nbsp;
   <a href="#-license">License</a>
@@ -27,15 +28,10 @@ Checkout was not a part of the scope.
 This web app utilizes the [Fake Store API](https://fakestoreapi.com/docs).
 
 
-
 ## 💻 Deploy
 
 - [Click here](https://next-fakestore.vercel.app/) to go to a Vercel deploy of this app
-## ⚙️ Functionality
 
-- View a specific product details
-- Add, remove and clear products in the cart
-- Filter products by category
 
 ## 🛠 Tech Stack
 
@@ -50,9 +46,17 @@ This web app utilizes the [Fake Store API](https://fakestoreapi.com/docs).
     - Airbnb JavaScript Style Guidelines
 
 
+## ⚙️ Functionality
+
+- View a specific product details
+- Add, remove and clear products in the cart
+- Filter products by category
+
+
 ## 🔢 Environment Variables
 
 Theres no need to set environment variables for this project
+
 
 ## 👨‍💻 Install and Scripts
 
@@ -74,6 +78,7 @@ Create build for deploying:
 ```bash
   npm run build
 ```
+
 
 ## 👥 Contribution
 
