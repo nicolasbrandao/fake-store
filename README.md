@@ -44,7 +44,7 @@ This web app utilizes the [Fake Store API](https://fakestoreapi.com/docs).
 - Tailwind
     - Classnames
 - ESLint + Prettier
-    - Airbnb JavaScript Style Guidelines
+    - Airbnb TypeScript Style Guidelines
 
 
 ## ⚙️ Functionality
